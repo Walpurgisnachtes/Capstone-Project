@@ -7,10 +7,9 @@ from openai import OpenAI
 
 import configparser
 
-def get_api_key():
+def get_api_key(config_file):
     config = configparser.ConfigParser()
 
-    config_file = 'config.ini'
     if not os.path.exists(config_file):
         print(f"Error: {config_file} not found.")
         return None
@@ -25,17 +24,18 @@ def get_api_key():
         return None
 
 # Usage
-api_key = get_api_key()
+if __name__ == '__main__':
+    api_key = get_api_key(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/backend/config.ini")
 
-client = OpenAI(api_key=api_key, base_url="https://api.deepseek.com")
+    client = OpenAI(api_key=api_key, base_url="https://api.deepseek.com")
 
-response = client.chat.completions.create(
-    model="deepseek-chat",
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant"},
-        {"role": "user", "content": "Hello"},
-    ],
-    stream=False
-)
+    response = client.chat.completions.create(
+        model="deepseek-chat",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant"},
+            {"role": "user", "content": "Hello"},
+        ],
+        stream=False
+    )
 
-print(response.choices[0].message.content)
+    print(response.choices[0].message.content)
