@@ -1,0 +1,264 @@
+{
+  "chapter_code": "Chapter 3",
+  "chapter_title": "Arrays, Linked Lists, and Recursion",
+  "knowledge_points": [
+    {
+      "topic": "Using Arrays",
+      "topic_knowledge_points": [
+        "Arrays are concrete data structures that access their entries using integer indices.",
+        "Arrays can be used to store objects like game entries with fixed maximum size.",
+        "Insertion into an array involves shifting elements to make space for the new entry.",
+        "Removal from an array involves shifting elements to fill the gap left by the removed entry.",
+        "Insertion-sort algorithm sorts an array by inserting each element into the sorted prefix by shifting larger elements.",
+        "Two-dimensional arrays use two indices to represent positional games, with row and column."
+      ]
+    },
+    {
+      "topic": "Singly Linked Lists",
+      "topic_knowledge_points": [
+        "A singly linked list is a collection of nodes that form a linear sequence, each node storing an element and a link to the next node.",
+        "The head is the first node, and the tail is the last node with next pointer null.",
+        "Insertion at the front of a singly linked list involves creating a new node and updating the head.",
+        "Removal from the front of a singly linked list involves updating the head to the next node and deleting the old head.",
+        "Singly linked lists can be implemented generically using templates to store arbitrary types."
+      ]
+    },
+    {
+      "topic": "Doubly Linked Lists",
+      "topic_knowledge_points": [
+        "A doubly linked list has nodes with next and prev pointers, allowing traversal in both directions.",
+        "Header and trailer sentinels are dummy nodes at the beginning and end to simplify operations.",
+        "Insertion into a doubly linked list involves linking a new node between two existing nodes by updating prev and next pointers.",
+        "Removal from a doubly linked list involves linking out the node by updating prev and next of adjacent nodes.",
+        "Doubly linked lists allow efficient insertion and removal at any position with direct access."
+      ]
+    },
+    {
+      "topic": "Circularly Linked Lists and List Reversal",
+      "topic_knowledge_points": [
+        "A circularly linked list links nodes in a cycle, with no beginning or end, using a cursor as a reference point.",
+        "The back is the element at the cursor, and the front is the next element.",
+        "Insertion in a circularly linked list adds after the cursor, handling empty list by pointing to itself.",
+        "Removal in a circularly linked list removes the node after the cursor.",
+        "Reversing a linked list can be done by copying to a temporary list in reverse and copying back."
+      ]
+    },
+    {
+      "topic": "Recursion",
+      "topic_knowledge_points": [
+        "Recursion is when a function calls itself, with base cases to terminate and recursive cases to progress.",
+        "Linear recursion makes at most one recursive call per invocation.",
+        "Summing array elements can be done with linear recursion by adding the last element to the sum of the rest.",
+        "Reversing an array can be done with linear recursion by swapping ends and recursing on the middle.",
+        "Tail recursion is when the recursive call is the last operation, convertible to iteration.",
+        "Binary recursion makes two recursive calls, like summing array by splitting into halves.",
+        "Computing Fibonacci naively with binary recursion is inefficient, better with linear recursion returning pairs.",
+        "Multiple recursion makes more than two recursive calls, useful for enumerating configurations in puzzles."
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "topic_exercise": {
+        "reinforcement": [
+          {
+            "exercise_code": "R-3.1",
+            "exercise_content": "Modify the implementation of class Scores so that at most ⌈maxEnt/2⌉of the scores can come from any one single player."
+          },
+          {
+            "exercise_code": "R-3.2",
+            "exercise_content": "Suppose that two entries of an array A are equal to each other. After running the insertion-sort algorithm of Code Fragment 3.7, will they appear in the same relative order in the final sorted order or in reverse order? Explain your answer."
+          },
+          {
+            "exercise_code": "R-3.3",
+            "exercise_content": "Give a C++ code fragment that, given a n × n matrix M of type float, replaces M with its transpose. Try to do this without the use of a temporary matrix."
+          },
+          {
+            "exercise_code": "R-3.4",
+            "exercise_content": "Describe a way to use recursion to compute the sum of all the elements in a n×n (two-dimensional) array of integers."
+          },
+          {
+            "exercise_code": "R-3.5",
+            "exercise_content": "Give a recursive definition of a singly linked list."
+          },
+          {
+            "exercise_code": "R-3.6",
+            "exercise_content": "Add a function size() to our C++ implementation of a singly link list. Can you design this function so that it runs in O(1) time?"
+          },
+          {
+            "exercise_code": "R-3.7",
+            "exercise_content": "Give an algorithm for finding the penultimate (second to last) node in a singly linked list where the last element is indicated by a null next link."
+          },
+          {
+            "exercise_code": "R-3.8",
+            "exercise_content": "Give a fully generic implementation of the doubly linked list data structure of Section 3.3.3 by using a templated class."
+          },
+          {
+            "exercise_code": "R-3.9",
+            "exercise_content": "Give a more robust implementation of the doubly linked list data structure of Section 3.3.3, which throws an appropriate exception if an illegal operation is attempted."
+          },
+          {
+            "exercise_code": "R-3.10",
+            "exercise_content": "Describe a nonrecursive function for finding, by link hopping, the middle node of a doubly linked list with header and trailer sentinels. (Note: This function must only use link hopping; it cannot use a counter.) What is the running time of this function?"
+          },
+          {
+            "exercise_code": "R-3.11",
+            "exercise_content": "Describe a recursive algorithm for finding the maximum element in an array A of n elements. What is your running time and space usage?"
+          },
+          {
+            "exercise_code": "R-3.12",
+            "exercise_content": "Draw the recursion trace for the execution of function ReverseArray(A,0,4) (Code Fragment 3.39) on array A = {4,3,6,2,5}."
+          },
+          {
+            "exercise_code": "R-3.13",
+            "exercise_content": "Draw the recursion trace for the execution of function PuzzleSolve(3,S,U) (Code Fragment 3.44), where S is empty and U = {a,b,c,d}."
+          },
+          {
+            "exercise_code": "R-3.14",
+            "exercise_content": "Write a short C++ function that repeatedly selects and removes a random entry from an n-element array until the array holds no more entries. Assume that you have access to a function random(k), which returns a random integer in the range from 0 to k."
+          },
+          {
+            "exercise_code": "R-3.15",
+            "exercise_content": "Give a fully generic implementation of the circularly linked list data structure of Section 3.4.1 by using a templated class."
+          },
+          {
+            "exercise_code": "R-3.16",
+            "exercise_content": "Give a more robust implementation of the circularly linked list data structure of Section 3.4.1, which throws an appropriate exception if an illegal operation is attempted."
+          },
+          {
+            "exercise_code": "R-3.17",
+            "exercise_content": "Write a short C++ function to count the number of nodes in a circularly linked list."
+          }
+        ],
+        "creativity": [
+          {
+            "exercise_code": "C-3.1",
+            "exercise_content": "In the Tic-Tac-Toe example, we used 1 for player X and −1 for player O. Explain how to modify the program’s counting trick to decide the winner if we had used 1 for player X and 4 for player O instead. Could we use any combination of values a and b for the two players? Explain."
+          },
+          {
+            "exercise_code": "C-3.2",
+            "exercise_content": "Give C++ code for performing add(e) and remove(i) functions for game entries stored in an array a, as in class Scores in Section 3.1.1, except this time, don’t maintain the game entries in order. Assume that we still need to keep n entries stored in indices 0 to n −1. Try to implement the add and remove functions without using any loops, so that the number of steps they perform does not depend on n."
+          },
+          {
+            "exercise_code": "C-3.3",
+            "exercise_content": "Let A be an array of size n ≥2 containing integers from 1 to n−1, inclusive, with exactly one repeated. Describe a fast algorithm for finding the integer in A that is repeated."
+          },
+          {
+            "exercise_code": "C-3.4",
+            "exercise_content": "Let B be an array of size n ≥6 containing integers from 1 to n−5, inclusive, with exactly five repeated. Describe a good algorithm for finding the five integers in B that are repeated."
+          },
+          {
+            "exercise_code": "C-3.5",
+            "exercise_content": "Suppose you are designing a multi-player game that has n ≥1000 players, numbered 1 to n, interacting in an enchanted forest. The winner of this game is the first player who can meet all the other players at least once (ties are allowed). Assuming that there is a function meet(i, j), which is called each time a player i meets a player j (with i ̸= j), describe a way to keep track of the pairs of meeting players and who is the winner."
+          },
+          {
+            "exercise_code": "C-3.6",
+            "exercise_content": "Give a recursive algorithm to compute the product of two positive integers, m and n, using only addition and subtraction."
+          },
+          {
+            "exercise_code": "C-3.7",
+            "exercise_content": "Describe a fast recursive algorithm for reversing a singly linked list L, so that the ordering of the nodes becomes opposite of what it was before."
+          },
+          {
+            "exercise_code": "C-3.8",
+            "exercise_content": "Describe a good algorithm for concatenating two singly linked lists L and M, with header sentinels, into a single list L′ that contains all the nodes of L followed by all the nodes of M."
+          },
+          {
+            "exercise_code": "C-3.9",
+            "exercise_content": "Give a fast algorithm for concatenating two doubly linked lists L and M, with header and trailer sentinel nodes, into a single list L′."
+          },
+          {
+            "exercise_code": "C-3.10",
+            "exercise_content": "Describe in detail how to swap two nodes x and y (and not just their contents) in a singly linked list L given references only to x and y. Repeat this exercise for the case when L is a doubly linked list. Which algorithm takes more time?"
+          },
+          {
+            "exercise_code": "C-3.11",
+            "exercise_content": "Describe in detail an algorithm for reversing a singly linked list L using only a constant amount of additional space and not using any recursion."
+          },
+          {
+            "exercise_code": "C-3.12",
+            "exercise_content": "In the Towers of Hanoi puzzle, we are given a platform with three pegs, a, b, and c, sticking out of it. On peg a is a stack of n disks, each larger than the next, so that the smallest is on the top and the largest is on the bottom. The puzzle is to move all the disks from peg a to peg c, moving one disk at a time, so that we never place a larger disk on top of a smaller one. Describe a recursive algorithm for solving the Towers of Hanoi puzzle for arbitrary n. (Hint: Consider first the subproblem of moving all but the nth disk from peg a to another peg using the third as “temporary storage.”)"
+          },
+          {
+            "exercise_code": "C-3.13",
+            "exercise_content": "Describe a recursive function for converting a string of digits into the integer it represents. For example, \"13531\" represents the integer 13,531."
+          },
+          {
+            "exercise_code": "C-3.14",
+            "exercise_content": "Describe a recursive algorithm that counts the number of nodes in a singly linked list."
+          },
+          {
+            "exercise_code": "C-3.15",
+            "exercise_content": "Write a recursive C++ program that will output all the subsets of a set of n elements (without repeating any subsets)."
+          },
+          {
+            "exercise_code": "C-3.16",
+            "exercise_content": "Write a short recursive C++ function that finds the minimum and maximum values in an array of int values without using any loops."
+          },
+          {
+            "exercise_code": "C-3.17",
+            "exercise_content": "Describe a recursive algorithm that will check if an array A of integers contains an integer A[i] that is the sum of two integers that appear earlier in A, that is, such that A[i] = A[ j]+A[k] for j,k < i."
+          },
+          {
+            "exercise_code": "C-3.18",
+            "exercise_content": "Write a short recursive C++ function that will rearrange an array of int values so that all the even values appear before all the odd values."
+          },
+          {
+            "exercise_code": "C-3.19",
+            "exercise_content": "Write a short recursive C++ function that takes a character string s and outputs its reverse. So for example, the reverse of \"pots&pans\" would be \"snap&stop\"."
+          },
+          {
+            "exercise_code": "C-3.20",
+            "exercise_content": "Write a short recursive C++ function that determines if a string s is a palindrome, that is, it is equal to its reverse. For example, \"racecar\" and \"gohangasalamiimalasagnahog\" are palindromes."
+          },
+          {
+            "exercise_code": "C-3.21",
+            "exercise_content": "Use recursion to write a C++ function for determining if a string s has more vowels than consonants."
+          },
+          {
+            "exercise_code": "C-3.22",
+            "exercise_content": "Suppose you are given two circularly linked lists, L and M, that is, two lists of nodes such that each node has a nonnull next node. Describe a fast algorithm for telling if L and M are really the same list of nodes but with different (cursor) starting points."
+          },
+          {
+            "exercise_code": "C-3.23",
+            "exercise_content": "Given a circularly linked list L containing an even number of nodes, describe how to split L into two circularly linked lists of half the size."
+          }
+        ],
+        "projects": [
+          {
+            "exercise_code": "P-3.1",
+            "exercise_content": "Write a C++ function that takes two three-dimensional integer arrays and adds them componentwise."
+          },
+          {
+            "exercise_code": "P-3.2",
+            "exercise_content": "Write a C++ program for a matrix class that can add and multiply arbitrary two-dimensional arrays of integers. Do this by overloading the addition (“+”) and multiplication (“*”) operators."
+          },
+          {
+            "exercise_code": "P-3.3",
+            "exercise_content": "Write a class that maintains the top 10 scores for a game application, implementing the add and remove functions of Section 3.1.1, but use a singly linked list instead of an array."
+          },
+          {
+            "exercise_code": "P-3.4",
+            "exercise_content": "Perform the previous project but use a doubly linked list. Moreover, your implementation of remove(i) should make the fewest number of pointer hops to get to the game entry at index i."
+          },
+          {
+            "exercise_code": "P-3.5",
+            "exercise_content": "Perform the previous project but use a linked list that is both circularly linked and doubly linked."
+          },
+          {
+            "exercise_code": "P-3.6",
+            "exercise_content": "Write a program for solving summation puzzles by enumerating and testing all possible configurations. Using your program, solve the three puzzles given in Section 3.5.3."
+          },
+          {
+            "exercise_code": "P-3.7",
+            "exercise_content": "Write a program that can perform encryption and decryption using an arbitrary substitution cipher. In this case, the encryption array is a random shuffling of the letters in the alphabet. Your program should generate a random encryption array, its corresponding decryption array, and use these to encode and decode a message."
+          },
+          {
+            "exercise_code": "P-3.8",
+            "exercise_content": "Write a program that can solve instances of the Tower of Hanoi problem (from Exercise C-3.12)."
+          }
+        ]
+      }
+    }
+  ]
+}

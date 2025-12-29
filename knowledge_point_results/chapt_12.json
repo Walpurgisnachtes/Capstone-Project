@@ -1,0 +1,265 @@
+{
+  "chapter_code": "Chapter 12",
+  "chapter_title": "Strings and Dynamic Programming",
+  "knowledge_points": [
+    {
+      "topic": "String Basics and STL string",
+      "topic_knowledge_points": [
+        "Substrings P[i..j], prefixes P[0..i], suffixes P[i..m−1]; null string length 0; alphabet Σ typically finite.",
+        "STL string supports size, empty, operator[], at, insert, append, erase, substr, find, c_str, iterators, comparisons, concatenation, I/O."
+      ]
+    },
+    {
+      "topic": "Dynamic Programming (DP)",
+      "topic_knowledge_points": [
+        "DP applies when problems decompose into overlapping subproblems with optimal substructure.",
+        "Matrix chain-product: define Ni,j = min over k of Ni,k + Nk+1,j + d_i d_{k+1} d_{j+1}, with Ni,i = 0; bottom-up O(n^3) time.",
+        "Longest Common Subsequence (LCS): L[i,j] = L[i−1,j−1]+1 if xi=yj else max(L[i−1,j], L[i,j−1]); O(nm) time, O(nm) space; reconstruct by backtracking."
+      ]
+    },
+    {
+      "topic": "Pattern Matching",
+      "topic_knowledge_points": [
+        "Brute force: try all alignments; worst-case O(nm).",
+        "Boyer–Moore (simplified): compare right-to-left; last(c) table; jump by m − min(j, 1+last(T[i])); worst-case O(nm+|Σ|), fast in practice on text.",
+        "Knuth–Morris–Pratt (KMP): failure function f(j) = length of longest prefix of P that is suffix of P[1..j]; scan once, shifting by f; O(n+m) time."
+      ]
+    },
+    {
+      "topic": "Compression and Greedy",
+      "topic_knowledge_points": [
+        "Huffman coding builds optimal prefix code using a min-priority queue: iteratively merge two least-frequent trees; O(n + d log d) time.",
+        "Greedy method: construct solution by locally optimal choices; Huffman coding exhibits greedy-choice property."
+      ]
+    },
+    {
+      "topic": "Tries (Text Indexing)",
+      "topic_knowledge_points": [
+        "Standard trie: ordered tree; edges labeled by characters; external nodes represent set strings; height equals longest string; O(n) nodes with n total length; searching O(dm) where d=|Σ|.",
+        "Compressed (Patricia) trie: compress single-child chains; labels are substrings via (i,j,k) or (i,j) references; O(s) nodes for s strings; space-efficient index.",
+        "Suffix trie/tree: trie of all suffixes of X$; compact representation uses (i,j) indices into X; supports substring queries in O(m) after O(n) (specialized) build.",
+        "Inverted index (search engines): trie on terms → pointers to sorted occurrence lists; multi-term queries via list intersections."
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "topic_exercise": {
+        "reinforcement": [
+          {
+            "exercise_code": "R-12.1",
+            "exercise_content": "Find optimal parenthesization for matrices 10×5, 5×2, 2×20, 20×12, 12×4, 4×60; show work."
+          },
+          {
+            "exercise_code": "R-12.2",
+            "exercise_content": "Output a fully parenthesized minimum-cost chain multiplication expression."
+          },
+          {
+            "exercise_code": "R-12.3",
+            "exercise_content": "List prefixes of P=\"aaabbaaa\" that are also suffixes."
+          },
+          {
+            "exercise_code": "R-12.4",
+            "exercise_content": "Illustrate brute-force comparisons for text \"aaabaadaabaaa\" and pattern \"aabaaa\"."
+          },
+          {
+            "exercise_code": "R-12.5",
+            "exercise_content": "Repeat for Boyer–Moore (exclude building last)."
+          },
+          {
+            "exercise_code": "R-12.6",
+            "exercise_content": "Repeat for KMP (exclude building failure function)."
+          },
+          {
+            "exercise_code": "R-12.7",
+            "exercise_content": "Build last table for pattern \"the quick brown fox jumped over a lazy cat\" over Σ = space+lowercase letters."
+          },
+          {
+            "exercise_code": "R-12.8",
+            "exercise_content": "Construct last in O(m+|Σ|) given array-indexable Σ."
+          },
+          {
+            "exercise_code": "R-12.9",
+            "exercise_content": "Compute KMP failure table for \"cgtacgttcgtac\"."
+          },
+          {
+            "exercise_code": "R-12.10",
+            "exercise_content": "Draw a standard trie for {abab,baba,ccccc,bbaaaa,caa,bbaacc,cbcc,cbca}."
+          },
+          {
+            "exercise_code": "R-12.11",
+            "exercise_content": "Draw the compressed trie for the same set."
+          },
+          {
+            "exercise_code": "R-12.12",
+            "exercise_content": "Draw compact suffix trie representation for \"minimize minime\"."
+          },
+          {
+            "exercise_code": "R-12.13",
+            "exercise_content": "Find longest prefix of \"cgtacgttcgtacg\" that is also a suffix."
+          },
+          {
+            "exercise_code": "R-12.14",
+            "exercise_content": "Build frequency array and Huffman tree for \"dogs do not spot hot pots or cats\"."
+          },
+          {
+            "exercise_code": "R-12.15",
+            "exercise_content": "Compute LCS table L for X=\"skullandbones\", Y=\"lullabybabies\" and output an LCS."
+          }
+        ],
+        "creativity": [
+          {
+            "exercise_code": "C-12.1",
+            "exercise_content": "Greedy placement of desert water refills to minimize stops; prove correctness."
+          },
+          {
+            "exercise_code": "C-12.2",
+            "exercise_content": "Greedy coin change for U.S. denominations; prove correctness."
+          },
+          {
+            "exercise_code": "C-12.3",
+            "exercise_content": "Give coin set where greedy fails for minimum coins."
+          },
+          {
+            "exercise_code": "C-12.4",
+            "exercise_content": "Place minimum guards on a line to cover points within distance 1."
+          },
+          {
+            "exercise_code": "C-12.5",
+            "exercise_content": "DP for minimum-weight triangulation of a convex polygon."
+          },
+          {
+            "exercise_code": "C-12.6",
+            "exercise_content": "Construct T and P forcing brute-force matching to Ω(nm)."
+          },
+          {
+            "exercise_code": "C-12.7",
+            "exercise_content": "Prove KMPFailureFunction runs in O(m)."
+          },
+          {
+            "exercise_code": "C-12.8",
+            "exercise_content": "Modify KMP to report all (possibly overlapping) matches in O(n+m)."
+          },
+          {
+            "exercise_code": "C-12.9",
+            "exercise_content": "Find longest prefix of P that is a substring of T in O(n+m)."
+          },
+          {
+            "exercise_code": "C-12.10",
+            "exercise_content": "Determine circular substring in O(n+m)."
+          },
+          {
+            "exercise_code": "C-12.11",
+            "exercise_content": "Binary-string KMP variant with complemented-bit failure; reduce comparisons to ≤ n."
+          },
+          {
+            "exercise_code": "C-12.12",
+            "exercise_content": "Combine BM with KMP-shift to achieve O(n+m)."
+          },
+          {
+            "exercise_code": "C-12.13",
+            "exercise_content": "Longest prefix of X that is a suffix of Y in O(n+m)."
+          },
+          {
+            "exercise_code": "C-12.14",
+            "exercise_content": "Efficient delete from a standard trie; analyze time."
+          },
+          {
+            "exercise_code": "C-12.15",
+            "exercise_content": "Efficient delete from a compressed trie; analyze time."
+          },
+          {
+            "exercise_code": "C-12.16",
+            "exercise_content": "Construct compact suffix trie from noncompact; analyze."
+          },
+          {
+            "exercise_code": "C-12.17",
+            "exercise_content": "Longest prefix of T that is a substring of reverse(T) in O(n)."
+          },
+          {
+            "exercise_code": "C-12.18",
+            "exercise_content": "Longest palindromic suffix of T efficiently; analyze."
+          },
+          {
+            "exercise_code": "C-12.19",
+            "exercise_content": "Longest decreasing subsequence in O(n^2)."
+          },
+          {
+            "exercise_code": "C-12.20",
+            "exercise_content": "Edit distance between X and Y via DP in O(nm)."
+          },
+          {
+            "exercise_code": "C-12.21",
+            "exercise_content": "Greedy change for $1−x cents; (a) US coins works; (b) construct counterexample coin set."
+          },
+          {
+            "exercise_code": "C-12.22",
+            "exercise_content": "Decide if P is a subsequence of T efficiently; analyze."
+          },
+          {
+            "exercise_code": "C-12.23",
+            "exercise_content": "Compute all B(i,j): longest common substring of suffixes in O(nm)."
+          },
+          {
+            "exercise_code": "C-12.24",
+            "exercise_content": "Maximize candy value choosing n pieces from jars with counts and per-piece values in O(n+m)."
+          },
+          {
+            "exercise_code": "C-12.25",
+            "exercise_content": "Given A,B,C (size n), decide if ∃ a+b+c=x in O(n^2 log n)."
+          },
+          {
+            "exercise_code": "C-12.26",
+            "exercise_content": "Improve previous to O(n^2)."
+          }
+        ],
+        "projects": [
+          {
+            "exercise_code": "P-12.1",
+            "exercise_content": "Implement LCS and perform DNA sequence alignment (GenBank)."
+          },
+          {
+            "exercise_code": "P-12.2",
+            "exercise_content": "Experimentally compare brute-force vs KMP on web texts by comparisons."
+          },
+          {
+            "exercise_code": "P-12.3",
+            "exercise_content": "Experimentally compare brute-force vs BM on web texts by comparisons."
+          },
+          {
+            "exercise_code": "P-12.4",
+            "exercise_content": "Benchmark brute-force, KMP, BM (include coding time and runtime comparisons)."
+          },
+          {
+            "exercise_code": "P-12.5",
+            "exercise_content": "Implement Huffman compression/decompression."
+          },
+          {
+            "exercise_code": "P-12.6",
+            "exercise_content": "Implement a standard trie for ASCII strings with membership queries."
+          },
+          {
+            "exercise_code": "P-12.7",
+            "exercise_content": "Implement a compressed trie for ASCII strings with membership queries."
+          },
+          {
+            "exercise_code": "P-12.8",
+            "exercise_content": "Implement a prefix trie (suffix trie) for an ASCII string with pattern matching."
+          },
+          {
+            "exercise_code": "P-12.9",
+            "exercise_content": "Implement a simple search engine with inverted index for a small site."
+          },
+          {
+            "exercise_code": "P-12.10",
+            "exercise_content": "Add page ranking to the simple search engine."
+          },
+          {
+            "exercise_code": "P-12.11",
+            "exercise_content": "Compute edit distance and alignment visualization between two strings."
+          }
+        ]
+      }
+    }
+  ]
+}

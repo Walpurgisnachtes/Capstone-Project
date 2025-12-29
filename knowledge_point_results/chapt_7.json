@@ -1,0 +1,361 @@
+{
+  "chapter_code": "Chapter 7",
+  "chapter_title": "Trees",
+  "knowledge_points": [
+    {
+      "topic": "General Trees",
+      "topic_knowledge_points": [
+        "A tree stores elements hierarchically with a root having no parent and every other node having exactly one parent and zero or more children.",
+        "Nodes can be classified as internal (with children) or external/leaves (without children), and sibling nodes share the same parent.",
+        "Ancestors and descendants define hierarchical relationships, and a subtree at node v contains v and all its descendants.",
+        "An ordered tree gives a left-to-right order to the children of each node, enabling sequence-based access like p.children().",
+        "A linked representation stores at each node an element, a parent link, and a container of child links, supporting O(1) parent/isRoot/isExternal and O(cp) children(p)."
+      ]
+    },
+    {
+      "topic": "Tree Traversals, Depth, and Height",
+      "topic_knowledge_points": [
+        "The depth of a node is the number of its ancestors and the height of a node is one plus the maximum height among its children with leaves at height 0.",
+        "Computing a node’s depth by recursing to the parent runs in O(depth), and computing height bottom-up runs in O(n).",
+        "Preorder traversal visits a node before recursively traversing its children and runs in O(n).",
+        "Postorder traversal visits a node after recursively traversing its children and runs in O(n).",
+        "Breadth-first traversal visits nodes by increasing depth and can be implemented with a queue."
+      ]
+    },
+    {
+      "topic": "Binary Trees",
+      "topic_knowledge_points": [
+        "A binary tree is an ordered tree where each node has at most two children labeled left and right, and a proper binary tree has either zero or two children per node.",
+        "The Binary Tree ADT augments tree positions with left(), right(), parent(), isRoot(), and isExternal().",
+        "In a binary tree with height h, level d has at most 2^d nodes, yielding bounds log(n+1)−1 ≤ h ≤ n−1 and tighter bounds for proper trees.",
+        "In a nonempty proper binary tree, the number of external nodes equals the number of internal nodes plus one.",
+        "A linked binary tree stores at each node an element and pointers to parent, left, and right, with O(1) navigation and updates like expandExternal and removeAboveExternal."
+      ]
+    },
+    {
+      "topic": "Binary Tree Implementations and Traversals",
+      "topic_knowledge_points": [
+        "A vector-based binary tree uses level numbering f(root)=1, f(left)=2f(parent), f(right)=2f(parent)+1 for O(1) navigation but can require O(2^h) space.",
+        "Binary-tree preorder, postorder, and inorder traversals each run in O(n), with inorder visiting left subtree, node, then right subtree.",
+        "An arithmetic expression tree evaluates in O(n) via postorder by computing left and right subtree values and combining with the operator at each internal node.",
+        "A binary search tree satisfies that all elements in the left subtree are ≤ the node and those in the right are ≥ the node, making inorder yield nondecreasing order.",
+        "Euler tour traversal generalizes preorder, inorder, and postorder by visiting each node three times (left, below, right) to support flexible computations in O(n)."
+      ]
+    },
+    {
+      "topic": "Representations and Patterns",
+      "topic_knowledge_points": [
+        "A general ordered tree can be represented as a binary tree by mapping first-child to left and next-sibling to right, preserving structure via right-child chains.",
+        "The template function pattern encapsulates a generic Euler tour with overridable hooks (visitLeft, visitBelow, visitRight, visitExternal) to specialize computations."
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "topic_exercise": {
+        "reinforcement": [
+          {
+            "exercise_code": "R-7.1",
+            "exercise_content": "Describe an algorithm for counting the number of left external nodes in a binary tree, using the Binary tree ADT."
+          },
+          {
+            "exercise_code": "R-7.2",
+            "exercise_content": "Answer questions about the tree of Figure 7.3: root, internal nodes, descendants and ancestors of cs016/, siblings of homeworks/, subtree at projects/, depth of papers/, and height of the tree."
+          },
+          {
+            "exercise_code": "R-7.3",
+            "exercise_content": "Find the value of the arithmetic expression associated with each subtree of the binary tree of Figure 7.11."
+          },
+          {
+            "exercise_code": "R-7.4",
+            "exercise_content": "Let T be an n-node improper binary tree; describe how to represent T by means of a proper binary tree T′ with O(n) nodes."
+          },
+          {
+            "exercise_code": "R-7.5",
+            "exercise_content": "What are the minimum and maximum number of internal and external nodes in an improper binary tree with n nodes?"
+          },
+          {
+            "exercise_code": "R-7.6",
+            "exercise_content": "Show a tree achieving the worst-case running time for algorithm depth."
+          },
+          {
+            "exercise_code": "R-7.7",
+            "exercise_content": "Give a justification of Proposition 7.4 relating tree height to maximum external-node depth."
+          },
+          {
+            "exercise_code": "R-7.8",
+            "exercise_content": "What is the running time of algorithm height2(T,v) when called on a node v distinct from the root?"
+          },
+          {
+            "exercise_code": "R-7.9",
+            "exercise_content": "For the tree of Figure 7.3, give the output of preorderPrint(T,T.root()) and parenPrint(T,T.root())."
+          },
+          {
+            "exercise_code": "R-7.10",
+            "exercise_content": "Modify parenPrint to use string sizes to wrap the parenthetic representation within 80 characters width."
+          },
+          {
+            "exercise_code": "R-7.11",
+            "exercise_content": "Draw an arithmetic-expression tree with leaves 1,5,6,7 and three internal operators from {+,−,×,/} so the root value is 21."
+          },
+          {
+            "exercise_code": "R-7.12",
+            "exercise_content": "For an ordered tree with more than one node, determine if preorder can match or reverse postorder, and justify your answer."
+          },
+          {
+            "exercise_code": "R-7.13",
+            "exercise_content": "Answer the previous traversal order question for a proper binary tree with more than one node."
+          },
+          {
+            "exercise_code": "R-7.14",
+            "exercise_content": "Analyze the running time of parenPrint(T,T.root())."
+          },
+          {
+            "exercise_code": "R-7.15",
+            "exercise_content": "Draw a binary tree whose preorder is EXAMFUN and inorder is MAFXUEN."
+          },
+          {
+            "exercise_code": "R-7.16",
+            "exercise_content": "Answer subproblems to justify Proposition 7.10 on height bounds and external/internal node counts."
+          },
+          {
+            "exercise_code": "R-7.17",
+            "exercise_content": "Generalize the Euler tour traversal to ternary trees and use it to compute node heights."
+          },
+          {
+            "exercise_code": "R-7.18",
+            "exercise_content": "Modify preorderPrint to print each node’s string on a new line with indentation proportional to node depth."
+          },
+          {
+            "exercise_code": "R-7.19",
+            "exercise_content": "For the tree of Figure 7.9, draw the output of postorderPrint(T,T.root())."
+          },
+          {
+            "exercise_code": "R-7.20",
+            "exercise_content": "For the tree of Figure 7.9, compute the output of diskSpace(T,T.root()) in terms of given values."
+          },
+          {
+            "exercise_code": "R-7.21",
+            "exercise_content": "For Figure 7.11, give the output of preorderPrint(T,T.root()) and printExpression(T,T.root())."
+          },
+          {
+            "exercise_code": "R-7.22",
+            "exercise_content": "Describe an Euler-tour-based algorithm to compute the number of descendants of each node of a binary tree."
+          },
+          {
+            "exercise_code": "R-7.23",
+            "exercise_content": "For a binary tree with n nodes, show D (sum of external depths) is O(n) with the minimum number of leaves and O(n log n) with the maximum number of leaves."
+          },
+          {
+            "exercise_code": "R-7.24",
+            "exercise_content": "With level numbering f, show f(v) ≤ 2^n − 1 for every node and give a 7-node example attaining the bound."
+          },
+          {
+            "exercise_code": "R-7.25",
+            "exercise_content": "Draw the binary tree representation of the expression “(((5+2) ∗ (2−1))/((2+9) + ((7−2)−1)) ∗ 8) .”"
+          },
+          {
+            "exercise_code": "R-7.26",
+            "exercise_content": "For a vector-realized binary tree with level numbering, give pseudo-code for root, parent, leftChild, rightChild, isExternal, and isRoot."
+          },
+          {
+            "exercise_code": "R-7.27",
+            "exercise_content": "Use an Euler tour to compute the level numbering value f for each node in a binary tree."
+          }
+        ],
+        "creativity": [
+          {
+            "exercise_code": "C-7.1",
+            "exercise_content": "Show there are more than 2^n potentially improper binary trees with n internal nodes."
+          },
+          {
+            "exercise_code": "C-7.2",
+            "exercise_content": "Describe an efficient algorithm to convert a fully balanced parenthesis string into an equivalent tree."
+          },
+          {
+            "exercise_code": "C-7.3",
+            "exercise_content": "Given pre(v), post(v), depth(v), and desc(v), derive a formula for post(v) in terms of the others."
+          },
+          {
+            "exercise_code": "C-7.4",
+            "exercise_content": "For a tree storing strings, compute and print for every internal node the string at the node and the height of its subtree."
+          },
+          {
+            "exercise_code": "C-7.5",
+            "exercise_content": "Design algorithms for preorderNext(v), inorderNext(v), and postorderNext(v) and analyze worst-case running times."
+          },
+          {
+            "exercise_code": "C-7.6",
+            "exercise_content": "Give an O(n)-time algorithm to compute depths of all nodes in a tree."
+          },
+          {
+            "exercise_code": "C-7.7",
+            "exercise_content": "Give an algorithm to print the indented parenthetic representation of a tree as in Figure 7.23."
+          },
+          {
+            "exercise_code": "C-7.8",
+            "exercise_content": "Construct a binary tree with Ω(n^2) sum of external depths, showing the worst case for height1."
+          },
+          {
+            "exercise_code": "C-7.9",
+            "exercise_content": "Show that if every internal node has exactly 3 children, then nE = 2nI + 1."
+          },
+          {
+            "exercise_code": "C-7.10",
+            "exercise_content": "Give update operations for improper binary trees analogous to expandExternal and removeAboveExternal, including any needed queries."
+          },
+          {
+            "exercise_code": "C-7.11",
+            "exercise_content": "Specialize an Euler tour to print balance factors (right-height minus left-height) for all nodes of a binary tree."
+          },
+          {
+            "exercise_code": "C-7.12",
+            "exercise_content": "Design an algorithm to test isomorphism of two ordered trees and analyze its running time."
+          },
+          {
+            "exercise_code": "C-7.13",
+            "exercise_content": "Extend the Euler tour traversal to general ordered (non-binary) trees."
+          },
+          {
+            "exercise_code": "C-7.14",
+            "exercise_content": "Given an expression tree, output the expression in postfix notation efficiently."
+          },
+          {
+            "exercise_code": "C-7.15",
+            "exercise_content": "Show that preorder of a proper binary tree equals the reverse of postorder of its reflection."
+          },
+          {
+            "exercise_code": "C-7.16",
+            "exercise_content": "Show preorderDraw and postorderDraw produce drawings without edge crossings and redraw Figure 7.20 with both methods."
+          },
+          {
+            "exercise_code": "C-7.17",
+            "exercise_content": "Design tourNext(v,a) to return the next visit (node, side) in an Euler tour and analyze its worst case."
+          },
+          {
+            "exercise_code": "C-7.18",
+            "exercise_content": "Analyze crossing-free properties of preorderDraw and apply postorderDraw to Figure 7.20."
+          },
+          {
+            "exercise_code": "C-7.19",
+            "exercise_content": "Design a general-tree drawing algorithm that generalizes the inorder approach."
+          },
+          {
+            "exercise_code": "C-7.20",
+            "exercise_content": "Implement BinaryTree functions when nodes have child pointers but no parent pointer, and analyze time complexity."
+          },
+          {
+            "exercise_code": "C-7.21",
+            "exercise_content": "Design a linked binary tree implementation with specialized node subclasses for internal, external, and root nodes."
+          },
+          {
+            "exercise_code": "C-7.22",
+            "exercise_content": "Provide destructor, copy constructor, and assignment operator for LinkedBinaryTree (Code Fragment 7.19)."
+          },
+          {
+            "exercise_code": "C-7.23",
+            "exercise_content": "Design a linked data structure for general (possibly improper) binary trees."
+          },
+          {
+            "exercise_code": "C-7.24",
+            "exercise_content": "Design an efficient algorithm to find the lowest common ancestor (LCA) of two nodes and analyze its running time."
+          },
+          {
+            "exercise_code": "C-7.25",
+            "exercise_content": "Design an efficient algorithm to find the diameter of a tree using LCA and analyze its running time."
+          },
+          {
+            "exercise_code": "C-7.26",
+            "exercise_content": "Given f(v) and f(w) in a level-numbered binary tree, compute f(u) for the LCA u without finding the node."
+          },
+          {
+            "exercise_code": "C-7.27",
+            "exercise_content": "Justify Table 7.1 by describing implementations and analyzing running times for each tree function in the linked structure."
+          },
+          {
+            "exercise_code": "C-7.28",
+            "exercise_content": "Implement expandExternal and removeAboveExternal for a vector-based binary tree with an extendable array, including handling of null external nodes and analyze running times."
+          },
+          {
+            "exercise_code": "C-7.29",
+            "exercise_content": "Describe a nonrecursive method to evaluate a binary arithmetic expression tree."
+          },
+          {
+            "exercise_code": "C-7.30",
+            "exercise_content": "Find all nodes that are not Roman nodes (left-right descendant difference > 5) but whose descendants are Roman, in linear time."
+          },
+          {
+            "exercise_code": "C-7.31",
+            "exercise_content": "For T′ representing T as a binary tree, compare preorder, postorder, and inorder of T′ to traversals of T."
+          },
+          {
+            "exercise_code": "C-7.32",
+            "exercise_content": "Describe a nonrecursive, stack-free, linear-time Euler tour traversal for a binary tree by tracking entry direction."
+          },
+          {
+            "exercise_code": "C-7.33",
+            "exercise_content": "Give pseudo-code for a nonrecursive inorder traversal of a binary tree using a stack in linear time."
+          },
+          {
+            "exercise_code": "C-7.34",
+            "exercise_content": "Give a linear-time level order traversal using only BinaryTree interface functions, hinting a queue."
+          },
+          {
+            "exercise_code": "C-7.35",
+            "exercise_content": "Describe a linear-time method to compute the path length of a (not necessarily binary) tree."
+          },
+          {
+            "exercise_code": "C-7.36",
+            "exercise_content": "Show that for a binary tree with n internal nodes, E(T) = I(T) + 2n using a sequence of expandExternal operations."
+          }
+        ],
+        "projects": [
+          {
+            "exercise_code": "P-7.1",
+            "exercise_content": "Write a program that re-roots a tree T at a given node v while preserving adjacencies."
+          },
+          {
+            "exercise_code": "P-7.2",
+            "exercise_content": "Provide a fully generic templated implementation of LinkedBinaryTree with error handling."
+          },
+          {
+            "exercise_code": "P-7.3",
+            "exercise_content": "Implement the binary tree ADT using a vector."
+          },
+          {
+            "exercise_code": "P-7.4",
+            "exercise_content": "Implement the binary tree ADT using a linked structure."
+          },
+          {
+            "exercise_code": "P-7.5",
+            "exercise_content": "Write a program that draws a binary tree."
+          },
+          {
+            "exercise_code": "P-7.6",
+            "exercise_content": "Write a program that draws a general tree."
+          },
+          {
+            "exercise_code": "P-7.7",
+            "exercise_content": "Write a program to input and display a person’s family tree."
+          },
+          {
+            "exercise_code": "P-7.8",
+            "exercise_content": "Implement the binary tree representation of the tree ADT, reusing LinkedBinaryTree if desired."
+          },
+          {
+            "exercise_code": "P-7.9",
+            "exercise_content": "Design a data structure for slicing floorplans supporting creation, horizontal/vertical cuts, assigning minimum sizes, drawing the slicing tree, compacting, and drawing the compacted floorplan."
+          },
+          {
+            "exercise_code": "P-7.10",
+            "exercise_content": "Convert a fully parenthesized arithmetic expression into a binary expression tree, display it, and print its evaluated value, with optional interactive variables xi."
+          },
+          {
+            "exercise_code": "P-7.11",
+            "exercise_content": "Write a Tic-Tac-Toe program that uses a game tree and minimax scoring to choose moves effectively."
+          }
+        ]
+      }
+    }
+  ]
+}

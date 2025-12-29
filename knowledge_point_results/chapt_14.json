@@ -1,0 +1,173 @@
+{
+  "chapter_code": "Chapter 14",
+  "chapter_title": "Memory Management and B-Trees",
+  "knowledge_points": [
+    {
+      "topic": "Run-Time Stacks and Function Calls",
+      "topic_knowledge_points": [
+        "The C++ run-time environment maintains a function call stack of frames storing local variables, parameters, caller info, and the program counter for active function invocations.",
+        "Call-by-value passes copies of arguments (including class objects), while reference parameters pass addresses so caller and callee refer to the same object.",
+        "Recursive functions are supported by stacking frames per invocation, enabling independent local state per call."
+      ]
+    },
+    {
+      "topic": "Heap Memory and Allocation",
+      "topic_knowledge_points": [
+        "The memory heap provides dynamically allocated blocks (e.g., via new/delete) managed separately from the call stack.",
+        "Free-list based allocation tracks holes of unused memory and suffers from internal fragmentation (wasted within blocks) and external fragmentation (wasted between allocated blocks).",
+        "First-fit, next-fit, best-fit, and worst-fit are heuristics for placing allocations in the free list with differing fragmentation behaviors."
+      ]
+    },
+    {
+      "topic": "Garbage Collection",
+      "topic_knowledge_points": [
+        "Mark-sweep garbage collection marks live objects reachable from root objects (call stacks) then sweeps unmarked objects to reclaim space, optionally coalescing holes.",
+        "Directed DFS over object references identifies live objects, and in-place DFS can simulate recursion by rewiring edges and using minimal additional state."
+      ]
+    },
+    {
+      "topic": "Memory Hierarchy and Caching",
+      "topic_knowledge_points": [
+        "The memory hierarchy comprises registers, cache, main memory, and external memory, with decreasing speed and increasing capacity by level.",
+        "Caching exploits temporal locality (recently used data likely reused) and spatial locality (nearby data likely accessed) using virtual memory and blocking (cache lines/pages).",
+        "Page replacement policies include Random, FIFO, and LRU, with LRU typically offering better empirical hit rates but higher overhead."
+      ]
+    },
+    {
+      "topic": "External-Memory Dictionaries and Trees",
+      "topic_knowledge_points": [
+        "Sequential structures like unsorted lists or sorted arrays are I/O-inefficient in external memory due to Θ(n/B) or logarithmic transfers for operations.",
+        "(a,b) trees are balanced multi-way search trees where each internal node has between a and b children and all leaves at the same depth.",
+        "Search in an (a,b) tree takes O((f(b)/log a)·log n) time with node-local search cost f(b), and updates use splitting and fusion to maintain node size bounds.",
+        "A B-tree of order d is an (a,b) tree with a=⌈d/2⌉ and b=d tuned so each node fits in a disk block, yielding O(logB n) I/O for searches and updates and O(n/B) space."
+      ]
+    },
+    {
+      "topic": "External-Memory Sorting",
+      "topic_knowledge_points": [
+        "Multi-way merge-sort recursively sorts d sublists and merges them with a tournament tree using O((n/B)·log(n/B)/log(M/B)) transfers and O(n log n) CPU.",
+        "A d-way merge with d≈M/B uses a complete binary tree of size d in internal memory to repeatedly select the least next element with O(n/B) transfers."
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "topic_exercise": {
+        "reinforcement": [
+          {
+            "exercise_code": "R-14.1",
+            "exercise_content": "Julia just bought a new computer that uses 64-bit integers to address memory cells. Argue why Julia will never in her life be able to upgrade the main memory of her computer so that it is the maximum size possible, assuming that you have to have distinct atoms to represent different bits."
+          },
+          {
+            "exercise_code": "R-14.2",
+            "exercise_content": "Describe, in detail, add and remove algorithms for an (a,b) tree."
+          },
+          {
+            "exercise_code": "R-14.3",
+            "exercise_content": "Suppose T is a multi-way tree in which each internal node has at least five and at most eight children. For what values of a and b is T a valid (a,b) tree?"
+          },
+          {
+            "exercise_code": "R-14.4",
+            "exercise_content": "For what values of d is the tree T of the previous exercise an order-d B-tree?"
+          },
+          {
+            "exercise_code": "R-14.5",
+            "exercise_content": "Show each level of recursion in performing a four-way, external-memory merge-sort of the sequence given in the previous exercise."
+          },
+          {
+            "exercise_code": "R-14.6",
+            "exercise_content": "Consider an initially empty memory cache consisting of four pages. How many page misses does the LRU algorithm incur on the following page request sequence: (2, 3, 4, 1, 2, 5, 1, 3, 5, 4, 1, 2, 3)?"
+          },
+          {
+            "exercise_code": "R-14.7",
+            "exercise_content": "Consider an initially empty memory cache consisting of four pages. How many page misses does the FIFO algorithm incur on the following page request sequence: (2, 3, 4, 1, 2, 5, 1, 3, 5, 4, 1, 2, 3)?"
+          },
+          {
+            "exercise_code": "R-14.8",
+            "exercise_content": "Consider an initially empty memory cache consisting of four pages. How many page misses can the random algorithm incur on the following page request sequence: (2, 3, 4, 1, 2, 5, 1, 3, 5, 4, 1, 2, 3)? Show all of the random choices your algorithm made in this case."
+          },
+          {
+            "exercise_code": "R-14.9",
+            "exercise_content": "Draw the result of inserting, into an initially empty order-7 B-tree, the keys (4, 40, 23, 50, 11, 34, 62, 78, 66, 22, 90, 59, 25, 72, 64, 77, 39, 12)."
+          },
+          {
+            "exercise_code": "R-14.10",
+            "exercise_content": "Show each level of recursion in performing a four-way merge-sort of the sequence given in the previous exercise."
+          }
+        ],
+        "creativity": [
+          {
+            "exercise_code": "C-14.1",
+            "exercise_content": "Describe an efficient external-memory algorithm for removing all the duplicate entries in a vector of size n."
+          },
+          {
+            "exercise_code": "C-14.2",
+            "exercise_content": "Show how to implement a map in external memory using an unordered sequence so that insertions require only O(1) transfers and searches require O(n/B) transfers in the worst case, where n is the number of elements and B is the number of list nodes that can fit into a disk block."
+          },
+          {
+            "exercise_code": "C-14.3",
+            "exercise_content": "Change the rules that define red-black trees so that each red-black tree T has a corresponding (4,8) tree and vice versa."
+          },
+          {
+            "exercise_code": "C-14.4",
+            "exercise_content": "Describe a modified version of the B-tree insertion algorithm so that each time we create an overflow because of a split of a node v, we redistribute keys among all of v’s siblings, so that each sibling holds roughly the same number of keys (possibly cascading the split up to the parent of v). What is the minimum fraction of each block that will always be filled using this scheme?"
+          },
+          {
+            "exercise_code": "C-14.5",
+            "exercise_content": "Another possible external-memory map implementation is to use a skip list, but to collect consecutive groups of O(B) nodes, in individual blocks, on any level in the skip list. In particular, we define an order-d B-skip list to be such a representation of a skip-list structure, where each block contains at least ⌈d/2⌉ list nodes and at most d list nodes. Let us also choose d in this case to be the maximum number of list nodes from a level of a skip list that can fit into one block. Describe how we should modify the skip-list insertion and removal algorithms for a B-skip list so that the expected height of the structure is O(logn/logB)."
+          },
+          {
+            "exercise_code": "C-14.6",
+            "exercise_content": "Describe an external-memory data structure to implement the queue ADT so that the total number of disk transfers needed to process a sequence of n enqueue and dequeue operations is O(n/B)."
+          },
+          {
+            "exercise_code": "C-14.7",
+            "exercise_content": "Solve the previous problem for the deque ADT."
+          },
+          {
+            "exercise_code": "C-14.8",
+            "exercise_content": "Describe how to use a B-tree to implement the partition (union-find) ADT (from Section 11.4.3) so that the union and find operations each use at most O(logn/logB) disk transfers."
+          },
+          {
+            "exercise_code": "C-14.9",
+            "exercise_content": "Suppose we are given a sequence S of n elements with integer keys such that some elements in S are colored “blue” and some elements in S are colored “red.” In addition, say that a red element e pairs with a blue element f if they have the same key value. Describe an efficient external-memory algorithm for finding all the red-blue pairs in S. How many disk transfers does your algorithm perform?"
+          },
+          {
+            "exercise_code": "C-14.10",
+            "exercise_content": "Consider the page caching problem where the memory cache can hold m pages, and we are given a sequence P of n requests taken from a pool of m + 1 possible pages. Describe the optimal strategy for the offline algorithm and show that it causes at most m + n/m page misses in total, starting from an empty cache."
+          },
+          {
+            "exercise_code": "C-14.11",
+            "exercise_content": "Consider the page caching strategy based on the least frequently used (LFU) rule, where the page in the cache that has been accessed the least often is the one that is evicted when a new page is requested. If there are ties, LFU evicts the least frequently used page that has been in the cache the longest. Show that there is a sequence P of n requests that causes LFU to miss Ω(n) times for a cache of m pages, whereas the optimal algorithm will miss only O(m) times."
+          },
+          {
+            "exercise_code": "C-14.12",
+            "exercise_content": "Suppose that instead of having the node-search function f(d) = 1 in an order-d B-tree T, we have f(d) = logd. What does the asymptotic running time of performing a search in T now become?"
+          },
+          {
+            "exercise_code": "C-14.13",
+            "exercise_content": "Describe an efficient external-memory algorithm that determines whether an array of n integers contains a value occurring more than n/2 times."
+          }
+        ],
+        "projects": [
+          {
+            "exercise_code": "P-14.1",
+            "exercise_content": "Write a C++ class that simulates the best-fit, worst-fit, first-fit, and next-fit algorithms for memory management. Determine experimentally which method is the best under various sequences of memory requests."
+          },
+          {
+            "exercise_code": "P-14.2",
+            "exercise_content": "Write a C++ class that implements all the functions of the ordered map ADT by means of an (a,b) tree, where a and b are integer constants passed as parameters to a constructor."
+          },
+          {
+            "exercise_code": "P-14.3",
+            "exercise_content": "Implement the B-tree data structure, assuming a block size of 1,024 and integer keys. Test the number of “disk transfers” needed to process a sequence of map operations."
+          },
+          {
+            "exercise_code": "P-14.4",
+            "exercise_content": "Implement an external-memory sorting algorithm and compare it experimentally to any internal-memory sorting algorithm."
+          }
+        ]
+      }
+    }
+  ]
+}

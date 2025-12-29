@@ -1,0 +1,255 @@
+{
+  "chapter_code": "Chapter 6",
+  "chapter_title": "List and Iterator ADTs",
+  "knowledge_points": [
+    {
+      "topic": "Vectors",
+      "topic_knowledge_points": [
+        "A vector (array list) supports random access by index with at, set, insert, erase, size, and empty, where indices range from 0 to size()-1.",
+        "A simple array-based vector stores element i at A[i], with at and set in O(1) time and insert/erase in O(n) due to shifting.",
+        "Extendable arrays grow capacity by allocating a larger array, copying elements, and swapping pointers, enabling amortized O(1) push-back.",
+        "Doubling-capacity extendable arrays achieve O(n) total time for n push operations via amortized analysis.",
+        "STL vectors provide dynamic resizing, bounds-checked at(i), push_back/pop_back, and iterator-based algorithms and constructors."
+      ]
+    },
+    {
+      "topic": "Lists and Iterators",
+      "topic_knowledge_points": [
+        "A list ADT uses iterators as abstract positions supporting begin, end, insertFront/Back, insert(p,e), eraseFront/Back, erase(p), size, and empty.",
+        "Iterators generalize positions with element access via *p and navigation via ++ and --, with begin at the first element and end just past the last.",
+        "A doubly linked list with header and trailer sentinels implements the list ADT with O(1) insertions and deletions at known positions.",
+        "The NodeList design nests Node and Iterator classes, providing constant-time iterator increment, decrement, dereference, and comparisons.",
+        "STL list implements a doubly linked list with push_front/back, pop_front/back, front, back, size, empty, and iterator traversal."
+      ]
+    },
+    {
+      "topic": "STL Containers and Iterators",
+      "topic_knowledge_points": [
+        "STL containers (vector, deque, list, stack, queue, priority_queue, set/multiset, map/multimap) expose uniform iterator interfaces.",
+        "Iterator ranges use the half-open interval [p,q) and support algorithms like sort, random_shuffle, reverse, find, min_element, max_element, and for_each.",
+        "Const iterators provide read-only traversal of containers passed by const reference, ensuring elements cannot be modified."
+      ]
+    },
+    {
+      "topic": "Sequences",
+      "topic_knowledge_points": [
+        "A sequence ADT unifies list and vector operations and provides bridging functions atIndex(i) and indexOf(p) between indices and positions.",
+        "A doubly linked list implementation of a sequence gives O(1) positional updates but O(n) atIndex/indexOf via link hopping.",
+        "An array-based sequence using position objects in cells supports O(1) atIndex/indexOf and O(n) insert/erase due to shifting.",
+        "Using a circular array improves insertFront/insertBack to O(1) while general insert/erase remain O(n), with O(N) space for capacity N.",
+        "Linked-list sequences use O(n) space and constant-time positional operations, while array sequences trade space for faster index-based access."
+      ]
+    },
+    {
+      "topic": "Case Study: Bubble-Sort on a Sequence",
+      "topic_knowledge_points": [
+        "Bubble-sort performs n passes swapping adjacent out-of-order elements so the i-th pass fixes the i largest elements at the end.",
+        "Bubble-sort runs in O(n^2) time when accesses and swaps are O(1), but using atIndex on linked-list sequences leads to O(n^3) time."
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "topic_exercise": {
+        "reinforcement": [
+          {
+            "exercise_code": "R-6.1",
+            "exercise_content": "Give a C++ code fragment for reversing an array."
+          },
+          {
+            "exercise_code": "R-6.2",
+            "exercise_content": "Give a C++ code fragment for randomly permuting an array."
+          },
+          {
+            "exercise_code": "R-6.3",
+            "exercise_content": "Give a C++ code fragment for circularly rotating an array by distance d."
+          },
+          {
+            "exercise_code": "R-6.4",
+            "exercise_content": "Draw a representation of an initially empty vector A after performing the sequence: insert(0,4), insert(0,3), insert(0,2), insert(2,1), insert(1,5), insert(1,6), insert(3,7), insert(0,8)."
+          },
+          {
+            "exercise_code": "R-6.5",
+            "exercise_content": "Give an adapter class to support the Stack interface using the functions of the vector ADT."
+          },
+          {
+            "exercise_code": "R-6.6",
+            "exercise_content": "Provide the missing housekeeping functions (copy constructor, assignment operator, and destructor) for the class ArrayVector of Code Fragment 6.2."
+          },
+          {
+            "exercise_code": "R-6.7",
+            "exercise_content": "Provide a fully generic version of the class ArrayVector of Code Fragment 6.2 using a templated class."
+          },
+          {
+            "exercise_code": "R-6.8",
+            "exercise_content": "Give a templated C++ function sum(v) that returns the sum of elements in an STL vector v using an STL iterator."
+          },
+          {
+            "exercise_code": "R-6.9",
+            "exercise_content": "Rewrite the justification of Proposition 6.2 assuming the cost of growing the array from size k to 2k is 3k cyber-dollars and determine the charge per push."
+          },
+          {
+            "exercise_code": "R-6.10",
+            "exercise_content": "Draw pictures illustrating each of the major steps in insert(p,e), insertFront(e), and insertBack(e) of Code Fragment 6.5."
+          },
+          {
+            "exercise_code": "R-6.11",
+            "exercise_content": "Provide a fully generic version of the class NodeList of Code Fragment 6.9 using a templated class."
+          },
+          {
+            "exercise_code": "R-6.12",
+            "exercise_content": "Provide the missing housekeeping functions (copy constructor, assignment operator, and destructor) for the class NodeList in Code Fragment 6.9."
+          },
+          {
+            "exercise_code": "R-6.13",
+            "exercise_content": "Provide a definition for a postincrement operator for the iterator in Code Fragment 6.7."
+          },
+          {
+            "exercise_code": "R-6.14",
+            "exercise_content": "Present a more efficient atRank(i) (atIndex) for NodeSequence that walks from the closer end of the list."
+          },
+          {
+            "exercise_code": "R-6.15",
+            "exercise_content": "Provide the details of an array implementation of the list ADT."
+          },
+          {
+            "exercise_code": "R-6.16",
+            "exercise_content": "Given kn total accesses to a list L of n elements, find the minimum and maximum number of elements accessed fewer than k times."
+          },
+          {
+            "exercise_code": "R-6.17",
+            "exercise_content": "Give pseudo-code for implementing all operations in the sequence ADT using an array in a circular fashion and state running times."
+          },
+          {
+            "exercise_code": "R-6.18",
+            "exercise_content": "Using the Sequence interface, describe a recursive function to determine if a sequence S of n integers contains k, without loops, and analyze extra space."
+          },
+          {
+            "exercise_code": "R-6.19",
+            "exercise_content": "Describe how to perform makeFirst(p) in O(1) time for a doubly linked list implementation of a sequence."
+          },
+          {
+            "exercise_code": "R-6.20",
+            "exercise_content": "Describe how to implement an iterator for ArrayVector (Code Fragment 6.2) based on an integer index, including *, ==, ++, and --."
+          }
+        ],
+        "creativity": [
+          {
+            "exercise_code": "C-6.1",
+            "exercise_content": "Describe changes to the extendable array implementation in Code Fragment 6.2 to avoid unexpected termination via exceptions and specify when to throw them."
+          },
+          {
+            "exercise_code": "C-6.2",
+            "exercise_content": "Give complete C++ code for ShrinkingVector extending ArrayVector with shrinkToFit to make capacity equal to current size."
+          },
+          {
+            "exercise_code": "C-6.3",
+            "exercise_content": "Describe changes to shrink the array size by half when the number of elements goes below N/4 in the extendable array implementation."
+          },
+          {
+            "exercise_code": "C-6.4",
+            "exercise_content": "Show that with the grow-and-shrink strategy the series of n pushes then n pops takes O(n) time."
+          },
+          {
+            "exercise_code": "C-6.5",
+            "exercise_content": "Describe a function to perform a perfect card shuffle of an array of 2n elements by converting into two lists and interleaving."
+          },
+          {
+            "exercise_code": "C-6.6",
+            "exercise_content": "Improve insert(i,e) in Code Fragment 6.5 so that on overflow elements are copied directly to final places in the new array."
+          },
+          {
+            "exercise_code": "C-6.7",
+            "exercise_content": "Analyze push operations when capacity increases by ⌈N/4⌉ instead of doubling and show total O(n) time for n pushes."
+          },
+          {
+            "exercise_code": "C-6.8",
+            "exercise_content": "Modify NodeList to disallow using a position from one list with another list efficiently."
+          },
+          {
+            "exercise_code": "C-6.9",
+            "exercise_content": "Realize insertBack and insertFront using only empty and insert combinations."
+          },
+          {
+            "exercise_code": "C-6.10",
+            "exercise_content": "For Sequence<int> seq; for (int i=0;i<n;i++) seq.insertAtRank(i/2,i): (a) show the sequence after each iteration for n=10, (b) draw the final schematic for general n."
+          },
+          {
+            "exercise_code": "C-6.11",
+            "exercise_content": "Implement indexOfElement(e) and positionOfElement(e) in terms of Sequence interface functions."
+          },
+          {
+            "exercise_code": "C-6.12",
+            "exercise_content": "Describe an array-based vector that achieves O(1) insert/remove at index 0 and at end, and constant-time elemAtRank."
+          },
+          {
+            "exercise_code": "C-6.13",
+            "exercise_content": "Design an efficient algorithm to uniformly randomize a vector of n cards using randomInteger(n) and give its running time."
+          },
+          {
+            "exercise_code": "C-6.14",
+            "exercise_content": "Design a circular node list ADT that abstracts a circularly linked list like NodeList abstracts a doubly linked list."
+          },
+          {
+            "exercise_code": "C-6.15",
+            "exercise_content": "Describe and analyze performing vector ADT operations on a sparse array represented by a list of (i,e) pairs for non-null entries."
+          },
+          {
+            "exercise_code": "C-6.16",
+            "exercise_content": "Show that only n−1 passes are needed for bubble-sort on a sequence of n elements."
+          },
+          {
+            "exercise_code": "C-6.17",
+            "exercise_content": "Give pseudo-code for bubble-sort using only two stacks and at most five extra variables so popping yields sorted order."
+          },
+          {
+            "exercise_code": "C-6.18",
+            "exercise_content": "Describe and analyze an efficient algorithm to compute the natural join of list A of n pairs and list B of m pairs producing triples (x,y,z)."
+          },
+          {
+            "exercise_code": "C-6.19",
+            "exercise_content": "Describe an efficient scheme for assembling n numbered packets in order as they arrive out of order and give the running time."
+          },
+          {
+            "exercise_code": "C-6.20",
+            "exercise_content": "Given a list L of n positive integers each with k=⌈log n⌉+1 bits, design an O(n)-time function to find a k-bit integer not in L."
+          },
+          {
+            "exercise_code": "C-6.21",
+            "exercise_content": "Argue why any solution to the previous problem must run in Ω(n) time."
+          },
+          {
+            "exercise_code": "C-6.22",
+            "exercise_content": "Given a list L of n arbitrary integers, design an O(n)-time function to find an integer that cannot be formed as the sum of two integers in L."
+          }
+        ],
+        "projects": [
+          {
+            "exercise_code": "P-6.1",
+            "exercise_content": "Implement the vector ADT by an extendable array in a circular fashion so insertions and deletions at both ends run in constant time."
+          },
+          {
+            "exercise_code": "P-6.2",
+            "exercise_content": "Implement the vector ADT using a doubly linked list and experimentally show it is worse than the array-based approach."
+          },
+          {
+            "exercise_code": "P-6.3",
+            "exercise_content": "Write a simple text editor using the list ADT and a cursor supporting left, right, delete, and insert c, redisplaying after each operation."
+          },
+          {
+            "exercise_code": "P-6.4",
+            "exercise_content": "Implement the sequence ADT by an extendable array in a circular fashion so insertions and deletions at both ends run in constant time."
+          },
+          {
+            "exercise_code": "P-6.5",
+            "exercise_content": "Implement the sequence ADT by means of a singly linked list."
+          },
+          {
+            "exercise_code": "P-6.6",
+            "exercise_content": "Write a complete adapter class that implements the sequence ADT using an STL vector object."
+          }
+        ]
+      }
+    }
+  ]
+}

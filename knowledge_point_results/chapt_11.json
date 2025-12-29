@@ -1,0 +1,350 @@
+{
+  "chapter_code": "Chapter 11",
+  "chapter_title": "Sorting, Sets, and Selection",
+  "knowledge_points": [
+    {
+      "topic": "Merge-Sort",
+      "topic_knowledge_points": [
+        "Divide-and-conquer: split S into S1 and S2, recursively sort, then merge.",
+        "Merging two sorted sequences (arrays or lists) runs in O(n1 + n2).",
+        "Merge-sort runs in O(n log n) time and O(n) extra space; recursion tree height is ⌈log n⌉.",
+        "Bottom-up (iterative) merge-sort merges runs of length 1,2,4,... using two buffers; also O(n log n).",
+        "Recurrences: t(n) = 2t(n/2) + cn ⇒ t(n) = O(n log n)."
+      ]
+    },
+    {
+      "topic": "Quick-Sort",
+      "topic_knowledge_points": [
+        "High level: choose pivot x, partition into L (<x), E (=x), G (>x), recursively sort L and G, concatenate.",
+        "Worst case O(n^2) (e.g., already sorted with poor pivot); best case O(n log n).",
+        "Randomized quick-sort picks a random pivot; expected O(n log n) time (size-group analysis).",
+        "In-place quick-sort partitions by bidirectional scan and swaps; median-of-three pivot improves practice."
+      ]
+    },
+    {
+      "topic": "Sorting Lower Bounds and Linear-Time Sorting",
+      "topic_knowledge_points": [
+        "Any comparison-based sorting needs Ω(n log n) comparisons in worst case (decision-tree argument).",
+        "Bucket-sort sorts n keys in [0, N−1] in O(n+N) time and space; stable with FIFO handling per bucket.",
+        "Radix-sort: lexicographic sort of d-tuple integer keys by stable bucket-sort from least to most significant; O(d(n+N))."
+      ]
+    },
+    {
+      "topic": "Choosing a Sorting Algorithm",
+      "topic_knowledge_points": [
+        "Insertion-sort is O(n+m) where m inversions; best for small or nearly-sorted inputs.",
+        "Merge-sort is optimal O(n log n) and stable; best for external-memory scenarios; not in-place.",
+        "Quick-sort is typically fastest in-memory (expected O(n log n)), but has O(n^2) worst case.",
+        "Heap-sort is O(n log n) worst case and in-place; good when worst-case bounds are needed.",
+        "Bucket/radix are superior when key domains are small (or tuples with small ranges)."
+      ]
+    },
+    {
+      "topic": "Sets and Mergable Sets",
+      "topic_knowledge_points": [
+        "Set ADT: insert, find, erase, begin/end; ordered variants support lower_bound, upper_bound, equal_range.",
+        "Mergable operations (union, intersect, subtract) can be implemented via a generic merge template on ordered sequences in O(nA+nB) time."
+      ]
+    },
+    {
+      "topic": "Partitions and Union-Find",
+      "topic_knowledge_points": [
+        "Partition ADT: makeSet(x), find(p), union(A,B).",
+        "Sequence-based implementation: union by moving smaller into larger; total O(n log n) time over n ops; amortized O(log n) per op.",
+        "Tree-based union-find with union-by-size and path compression achieves O(n log* n) total time; practically near-linear."
+      ]
+    },
+    {
+      "topic": "Selection (Order Statistics)",
+      "topic_knowledge_points": [
+        "Quick-select (randomized): partition like quick-sort, recurse only on needed side; expected O(n), worst-case O(n^2).",
+        "Expected-time analysis via linearity of expectation and good split probability.",
+        "Deterministic linear-time selection achievable via median-of-medians (group-of-five) pivot."
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "topic_exercise": {
+        "reinforcement": [
+          {
+            "exercise_code": "R-11.1",
+            "exercise_content": "Choose best sorting algorithm for general objects, strings, doubles, 32-bit ints, and bytes; justify."
+          },
+          {
+            "exercise_code": "R-11.2",
+            "exercise_content": "For a list of n bits, analyze merge-sort and quick-sort times."
+          },
+          {
+            "exercise_code": "R-11.3",
+            "exercise_content": "For a list of n bits, analyze stable bucket-sort time."
+          },
+          {
+            "exercise_code": "R-11.4",
+            "exercise_content": "Prove the merge-sort tree height is ⌈log n⌉."
+          },
+          {
+            "exercise_code": "R-11.5",
+            "exercise_content": "Explain downward/upward arrows in merge-sort tree figures."
+          },
+          {
+            "exercise_code": "R-11.6",
+            "exercise_content": "Give recursive merge-sort pseudocode for arrays."
+          },
+          {
+            "exercise_code": "R-11.7",
+            "exercise_content": "Show merge-sort is O(n log n) even when n is not a power of 2."
+          },
+          {
+            "exercise_code": "R-11.8",
+            "exercise_content": "Given sorted A and B (with duplicates), compute A ∪ B (without duplicates) in O(n)."
+          },
+          {
+            "exercise_code": "R-11.9",
+            "exercise_content": "Prove (X−A) ∪ (X−B) = X − (A ∩ B)."
+          },
+          {
+            "exercise_code": "R-11.10",
+            "exercise_content": "Pivot = middle element: worst-case time on already sorted input?"
+          },
+          {
+            "exercise_code": "R-11.11",
+            "exercise_content": "Construct input causing Ω(n^2) for quick-sort with middle pivot."
+          },
+          {
+            "exercise_code": "R-11.12",
+            "exercise_content": "Prove best-case quick-sort is O(n log n)."
+          },
+          {
+            "exercise_code": "R-11.13",
+            "exercise_content": "Pseudocode for randomized in-place quick-sort."
+          },
+          {
+            "exercise_code": "R-11.14",
+            "exercise_content": "Bound probability an element belongs to > 2 log n subproblems in size group i."
+          },
+          {
+            "exercise_code": "R-11.15",
+            "exercise_content": "Analyze inPlaceQuickSort behavior and inefficiency with duplicates; running time when all keys equal."
+          },
+          {
+            "exercise_code": "R-11.16",
+            "exercise_content": "Max number of inputs sorted with just n comparisons?"
+          },
+          {
+            "exercise_code": "R-11.17",
+            "exercise_content": "If a sorter handles first k elements in O(n), what’s largest asymptotic k?"
+          },
+          {
+            "exercise_code": "R-11.18",
+            "exercise_content": "Is merge-sort stable? Why?"
+          },
+          {
+            "exercise_code": "R-11.19",
+            "exercise_content": "Modify merge-sort to be straggling (reverse stability)."
+          },
+          {
+            "exercise_code": "R-11.20",
+            "exercise_content": "Radix-sort for triplets and general d-tuples."
+          },
+          {
+            "exercise_code": "R-11.21",
+            "exercise_content": "Is bucket-sort in-place?"
+          },
+          {
+            "exercise_code": "R-11.22",
+            "exercise_content": "Give list where merge/heap are O(n log n) but insertion-sort is O(n), and its reverse."
+          },
+          {
+            "exercise_code": "R-11.23",
+            "exercise_content": "Pseudocode for path compression along a path in O(h)."
+          },
+          {
+            "exercise_code": "R-11.24",
+            "exercise_content": "Show an incorrect path-compression idea runs in Ω(h^2)."
+          },
+          {
+            "exercise_code": "R-11.25",
+            "exercise_content": "In-place quick-select pseudocode."
+          },
+          {
+            "exercise_code": "R-11.26",
+            "exercise_content": "Show quick-select worst case is Ω(n^2)."
+          }
+        ],
+        "creativity": [
+          {
+            "exercise_code": "C-11.1",
+            "exercise_content": "Convert a linked-list dictionary to a linked-list map preserving relative order."
+          },
+          {
+            "exercise_code": "C-11.2",
+            "exercise_content": "a) O(n) test if T is sorted; b) why insufficient to prove T sorts S; c) extra info Linda should output to validate in O(n)."
+          },
+          {
+            "exercise_code": "C-11.3",
+            "exercise_content": "Compute symmetric difference A ⊕ B from sorted sequences."
+          },
+          {
+            "exercise_code": "C-11.4",
+            "exercise_content": "Set ADT with balanced trees when one set is much smaller: algorithms and analyses."
+          },
+          {
+            "exercise_code": "C-11.5",
+            "exercise_content": "Remove duplicates from a collection in O(n) expected/worst-case time."
+          },
+          {
+            "exercise_code": "C-11.6",
+            "exercise_content": "Bit-vector set representation: implement set ADT efficiently."
+          },
+          {
+            "exercise_code": "C-11.7",
+            "exercise_content": "Quick-sort with pivot as median of last d elements (constant odd d): worst-case time?"
+          },
+          {
+            "exercise_code": "C-11.8",
+            "exercise_content": "Recurrence-based expected-time proof for randomized quick-sort."
+          },
+          {
+            "exercise_code": "C-11.9",
+            "exercise_content": "Efficiently handle duplicates in inPlaceQuickSort."
+          },
+          {
+            "exercise_code": "C-11.10",
+            "exercise_content": "Nonrecursive in-place quick-sort using an explicit stack."
+          },
+          {
+            "exercise_code": "C-11.11",
+            "exercise_content": "Construct inverted file (word → positions) from document efficiently."
+          },
+          {
+            "exercise_code": "C-11.12",
+            "exercise_content": "In-place partitioning of 0/1 array: all 0's before 1's."
+          },
+          {
+            "exercise_code": "C-11.13",
+            "exercise_content": "Count winner in election with up to O(n) candidates in O(n log n)."
+          },
+          {
+            "exercise_code": "C-11.14",
+            "exercise_content": "Election winner with k < n candidates in O(n log k)."
+          },
+          {
+            "exercise_code": "C-11.15",
+            "exercise_content": "Majority-winner detection algorithm with analysis."
+          },
+          {
+            "exercise_code": "C-11.16",
+            "exercise_content": "Make any comparison-based sort stable without changing asymptotic time."
+          },
+          {
+            "exercise_code": "C-11.17",
+            "exercise_content": "Test in O(n log n) whether two sequences contain the same multiset of elements."
+          },
+          {
+            "exercise_code": "C-11.18",
+            "exercise_content": "Sort n integers in [0, n^2−1] in O(n) time."
+          },
+          {
+            "exercise_code": "C-11.19",
+            "exercise_content": "Sort k sequences with integer keys in O(n+N) total time."
+          },
+          {
+            "exercise_code": "C-11.20",
+            "exercise_content": "Determine if a sequence contains duplicate elements efficiently."
+          },
+          {
+            "exercise_code": "C-11.21",
+            "exercise_content": "Count inversions in O(n log n)."
+          },
+          {
+            "exercise_code": "C-11.22",
+            "exercise_content": "Show expected Ω(n^2) for insertion-sort on random permutation."
+          },
+          {
+            "exercise_code": "C-11.23",
+            "exercise_content": "Given A,B and m, decide if ∃ a∈A, b∈B with a+b=m in O(n log n)."
+          },
+          {
+            "exercise_code": "C-11.24",
+            "exercise_content": "Find ⌈log n⌉ elements closest to the median efficiently."
+          },
+          {
+            "exercise_code": "C-11.25",
+            "exercise_content": "Match nuts to bolts using only cross comparisons efficiently."
+          },
+          {
+            "exercise_code": "C-11.26",
+            "exercise_content": "Use deterministic linear selection to sort in O(n log n) worst-case time."
+          },
+          {
+            "exercise_code": "C-11.27",
+            "exercise_content": "Find the O(k) quantiles (⌈n/k⌉, 2⌈n/k⌉, ...) in O(n log k) expected time."
+          },
+          {
+            "exercise_code": "C-11.28",
+            "exercise_content": "Answer sequence of removeMin with keys in [0, n−1] in O(n log* n)."
+          },
+          {
+            "exercise_code": "C-11.29",
+            "exercise_content": "Given alienSplit partitioner, sort in O(n log n / log k) time."
+          },
+          {
+            "exercise_code": "C-11.30",
+            "exercise_content": "Analyze Karen’s repeated-halving path compression; correctness and time on path length h."
+          },
+          {
+            "exercise_code": "C-11.31",
+            "exercise_content": "Output all inversion pairs in O(n + k) where k is number of inversions."
+          },
+          {
+            "exercise_code": "C-11.32",
+            "exercise_content": "Median-of-medians deterministic selection: prove linear time (answer parts a–e)."
+          }
+        ],
+        "projects": [
+          {
+            "exercise_code": "P-11.1",
+            "exercise_content": "Implement bucket-sort for char and short arrays; compare with STL sort."
+          },
+          {
+            "exercise_code": "P-11.2",
+            "exercise_content": "Compare in-place and non-in-place quick-sort experimentally."
+          },
+          {
+            "exercise_code": "P-11.3",
+            "exercise_content": "Implement bucket-sort for std::list<int> in O(n+N) time."
+          },
+          {
+            "exercise_code": "P-11.4",
+            "exercise_content": "Benchmark merge-sort vs deterministic quick-sort on random and nearly-sorted data."
+          },
+          {
+            "exercise_code": "P-11.5",
+            "exercise_content": "Benchmark deterministic vs randomized quick-sort."
+          },
+          {
+            "exercise_code": "P-11.6",
+            "exercise_content": "Benchmark in-place insertion-sort vs in-place quick-sort; find n where quick-sort wins."
+          },
+          {
+            "exercise_code": "P-11.7",
+            "exercise_content": "Animate a sorting algorithm to illustrate key steps."
+          },
+          {
+            "exercise_code": "P-11.8",
+            "exercise_content": "Implement randomized quick-sort and quick-select; compare speeds."
+          },
+          {
+            "exercise_code": "P-11.9",
+            "exercise_content": "Implement extended set ADT (union, intersect, subtract, size, empty, equals, contains, insert, remove)."
+          },
+          {
+            "exercise_code": "P-11.10",
+            "exercise_content": "Implement union-find with union-by-size and path compression."
+          }
+        ]
+      }
+    }
+  ]
+}

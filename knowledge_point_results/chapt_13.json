@@ -1,0 +1,367 @@
+{
+  "chapter_code": "Chapter 13",
+  "chapter_title": "Graph Algorithms",
+  "knowledge_points": [
+    {
+      "topic": "Graph Basics and ADT",
+      "topic_knowledge_points": [
+        "A graph G = (V, E) has vertices and edges (directed or undirected); simple graphs have no parallel edges or self-loops.",
+        "Key notions: adjacency, incidence, degree/indegree/outdegree, path, cycle, connected components, trees/forests, spanning trees.",
+        "Graph ADT exposes Vertex/Edge with incidentEdges, isAdjacentTo, endVertices/opposite, vertices(), edges(), insert/remove operations; directed variants add isDirected, origin, dest, insertDirectedEdge."
+      ]
+    },
+    {
+      "topic": "Graph Representations",
+      "topic_knowledge_points": [
+        "Edge list: store all vertices and edges; simple, O(n+m) space; incidentEdges/isAdjacentTo are O(m).",
+        "Adjacency list: each vertex keeps list of incident edges; O(n+m) space; incidentEdges O(deg(v)), isAdjacentTo O(min(deg(v),deg(w))).",
+        "Adjacency matrix: n×n table of adjacencies; O(n^2) space; isAdjacentTo O(1); incidentEdges O(n); vertex insert/delete O(n^2)."
+      ]
+    },
+    {
+      "topic": "Traversals",
+      "topic_knowledge_points": [
+        "Depth-First Search (DFS): recursive exploration; labels discovery (tree) edges and back edges; discovery edges form a spanning tree of the connected component.",
+        "DFS runs in O(n+m) with adjacency lists; solves connectivity, spanning tree, connected components, path/cycle finding.",
+        "Decorator pattern: attach attributes (visited/status) to vertices/edges; generic DFS with overridable hooks (startVisit, traverseDiscovery, traverseBack, finishVisit, isDone).",
+        "Breadth-First Search (BFS): explores level by level; discovery edges form BFS tree; level i equals shortest number of edges from start; cross edges between same/adjacent levels; O(n+m)."
+      ]
+    },
+    {
+      "topic": "Directed Graphs",
+      "topic_knowledge_points": [
+        "Reachability, strongly connected, directed cycle; directed DFS/BFS traverse only outgoing edges.",
+        "Transitive closure: Floyd–Warshall (dynamic programming) in O(n^3); repeated DFS O(n(n+m)), good for sparse graphs.",
+        "Strong connectivity test: DFS from s in G and in reverse(G); if both visit all vertices then strongly connected.",
+        "Topological sorting (DAGs): Kahn’s algorithm using indegrees stack/queue, O(n+m); DAG iff a topological order exists."
+      ]
+    },
+    {
+      "topic": "Shortest Paths",
+      "topic_knowledge_points": [
+        "Weighted graphs define path length by sum of edge weights; Dijkstra’s algorithm (nonnegative weights) grows a cloud using a min-priority queue and edge relaxation D[z] = min(D[z], D[u]+w(u,z)).",
+        "Dijkstra with adjacency lists and heap runs in O((n+m) log n); correctness relies on no negative-weight edges."
+      ]
+    },
+    {
+      "topic": "Minimum Spanning Trees (MST)",
+      "topic_knowledge_points": [
+        "Cut property: minimum-weight edge across any cut appears in some MST.",
+        "Kruskal: sort edges by weight; add if it connects two different clusters (union-find); O(m log n) with heap + union-find.",
+        "Prim–Jarník: grow a tree from an arbitrary root using a min-priority queue keyed by best incident edge; O((n+m) log n)."
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "topic_exercise": {
+        "reinforcement": [
+          {
+            "exercise_code": "R-13.1",
+            "exercise_content": "Draw a simple undirected graph with 12 vertices, 18 edges, and 3 connected components; explain impossibility with 66 edges."
+          },
+          {
+            "exercise_code": "R-13.2",
+            "exercise_content": "Draw adjacency list and matrix for Figure 13.1’s undirected graph."
+          },
+          {
+            "exercise_code": "R-13.3",
+            "exercise_content": "Draw a simple directed graph with 8 vertices, 16 edges, indegree=outdegree=2, and show a single Euler tour."
+          },
+          {
+            "exercise_code": "R-13.4",
+            "exercise_content": "Remove one edge from R-13.3 and show an Euler path covers all edges."
+          },
+          {
+            "exercise_code": "R-13.5",
+            "exercise_content": "Given course/prerequisite pairs, produce a feasible order (topological sort)."
+          },
+          {
+            "exercise_code": "R-13.6",
+            "exercise_content": "Explain why edge-list insertVertex is O(1) but eraseVertex is O(m)."
+          },
+          {
+            "exercise_code": "R-13.7",
+            "exercise_content": "Given adjacency sets for 1..8, (a) draw G, (b) DFS order from 1, (c) BFS order from 1 (use given neighbor order)."
+          },
+          {
+            "exercise_code": "R-13.8",
+            "exercise_content": "Choose adjacency list vs matrix for space/performance scenarios and justify."
+          },
+          {
+            "exercise_code": "R-13.9",
+            "exercise_content": "Explain why DFS on an adjacency matrix is O(n^2)."
+          },
+          {
+            "exercise_code": "R-13.10",
+            "exercise_content": "Draw the transitive closure of Figure 13.2’s digraph."
+          },
+          {
+            "exercise_code": "R-13.11",
+            "exercise_content": "Compute a topological ordering for the directed graph in Figure 13.8(d) (solid edges)."
+          },
+          {
+            "exercise_code": "R-13.12",
+            "exercise_content": "Can we use a queue instead of a stack in Kahn’s topological sort? Why or why not?"
+          },
+          {
+            "exercise_code": "R-13.13",
+            "exercise_content": "Draw a weighted graph (8 v, 16 e, unique weights) and run Dijkstra from a chosen start."
+          },
+          {
+            "exercise_code": "R-13.14",
+            "exercise_content": "Modify Dijkstra’s pseudo-code to handle parallel edges and self-loops."
+          },
+          {
+            "exercise_code": "R-13.15",
+            "exercise_content": "Adapt Dijkstra’s to directed graphs (shortest directed paths from source)."
+          },
+          {
+            "exercise_code": "R-13.16",
+            "exercise_content": "Modify Dijkstra’s to also output a shortest-path tree."
+          },
+          {
+            "exercise_code": "R-13.17",
+            "exercise_content": "Given 8 islands and distances, choose 7 bridges minimizing total length (MST)."
+          },
+          {
+            "exercise_code": "R-13.18",
+            "exercise_content": "Run Kruskal on an 8-vertex, 16-edge weighted graph (unique weights)."
+          },
+          {
+            "exercise_code": "R-13.19",
+            "exercise_content": "Run Prim–Jarník on the same graph."
+          },
+          {
+            "exercise_code": "R-13.20",
+            "exercise_content": "Explain why using an unsorted queue yields Dijkstra best-case O(n^2)."
+          },
+          {
+            "exercise_code": "R-13.21",
+            "exercise_content": "Explain diagram conventions (colors/arrows/thickness/dashes) in Figure 13.6 (DFS)."
+          },
+          {
+            "exercise_code": "R-13.22",
+            "exercise_content": "Explain conventions in Figure 13.7 (BFS)."
+          },
+          {
+            "exercise_code": "R-13.23",
+            "exercise_content": "Explain conventions in Figure 13.9 (directed DFS)."
+          },
+          {
+            "exercise_code": "R-13.24",
+            "exercise_content": "Explain conventions in Figure 13.10 (Floyd–Warshall)."
+          },
+          {
+            "exercise_code": "R-13.25",
+            "exercise_content": "Explain conventions in Figure 13.12 (Topological sort)."
+          },
+          {
+            "exercise_code": "R-13.26",
+            "exercise_content": "Explain conventions in Figures 13.14–13.15 (Dijkstra)."
+          },
+          {
+            "exercise_code": "R-13.27",
+            "exercise_content": "Explain conventions in Figures 13.18–13.20 (Kruskal)."
+          },
+          {
+            "exercise_code": "R-13.28",
+            "exercise_content": "Explain conventions in Figures 13.21–13.22 (Prim–Jarník)."
+          },
+          {
+            "exercise_code": "R-13.29",
+            "exercise_content": "How many edges in the transitive closure of a directed path on n vertices?"
+          },
+          {
+            "exercise_code": "R-13.30",
+            "exercise_content": "For a complete binary tree (edges parent→child), show closure has O(n log n) edges."
+          },
+          {
+            "exercise_code": "R-13.31",
+            "exercise_content": "What does a DFS tree look like on a complete graph?"
+          },
+          {
+            "exercise_code": "R-13.32",
+            "exercise_content": "What does a BFS tree look like on a complete graph?"
+          },
+          {
+            "exercise_code": "R-13.33",
+            "exercise_content": "Given an n×n maze grid, test correctness (unique start–finish path, reachability, no loops); give runtime."
+          }
+        ],
+        "creativity": [
+          {
+            "exercise_code": "C-13.1",
+            "exercise_content": "Detect whether a DAG is compact (linear extension equals complete DAG) in O(n^2)."
+          },
+          {
+            "exercise_code": "C-13.2",
+            "exercise_content": "O(n+m)-time algorithm to compute all connected components of an undirected graph."
+          },
+          {
+            "exercise_code": "C-13.3",
+            "exercise_content": "Prove all non-tree edges in DFS tree of an undirected connected graph are back edges."
+          },
+          {
+            "exercise_code": "C-13.4",
+            "exercise_content": "With edge list, implement areAdjacent in O(log n) using an appropriate structure; describe method."
+          },
+          {
+            "exercise_code": "C-13.5",
+            "exercise_content": "Find a center of a free tree (min eccentricity); discuss uniqueness and number of centers."
+          },
+          {
+            "exercise_code": "C-13.6",
+            "exercise_content": "Prove BFS level i gives shortest-path length in edges."
+          },
+          {
+            "exercise_code": "C-13.7",
+            "exercise_content": "Compute diameter (longest path) of a free tree efficiently."
+          },
+          {
+            "exercise_code": "C-13.8",
+            "exercise_content": "Given tree-like network, compute all stations reachable within ≤ 4 hops from each station."
+          },
+          {
+            "exercise_code": "C-13.9",
+            "exercise_content": "Explain why BFS has no forward edges in a digraph."
+          },
+          {
+            "exercise_code": "C-13.10",
+            "exercise_content": "Find an Euler tour in a directed graph with in-degree=out-degree and connectivity in O(n+m)."
+          },
+          {
+            "exercise_code": "C-13.11",
+            "exercise_content": "Compute a maximal independent set efficiently; analyze running time."
+          },
+          {
+            "exercise_code": "C-13.12",
+            "exercise_content": "Traverse each edge of an undirected graph exactly once in each direction in O(n+m)."
+          },
+          {
+            "exercise_code": "C-13.13",
+            "exercise_content": "Prove Proposition 13.14 about BFS properties."
+          },
+          {
+            "exercise_code": "C-13.14",
+            "exercise_content": "Give a graph forcing Dijkstra with heap to Ω(n^2 log n) time."
+          },
+          {
+            "exercise_code": "C-13.15",
+            "exercise_content": "Give a directed graph with negative edges (no negative cycle) where Dijkstra fails."
+          },
+          {
+            "exercise_code": "C-13.16",
+            "exercise_content": "Analyze a naive greedy shortest path strategy; prove or give counterexample."
+          },
+          {
+            "exercise_code": "C-13.17",
+            "exercise_content": "Prove uniqueness of MST when all edge weights are distinct."
+          },
+          {
+            "exercise_code": "C-13.18",
+            "exercise_content": "Compute longest directed path from s to t in a weighted DAG (representation, DS, runtime)."
+          },
+          {
+            "exercise_code": "C-13.19",
+            "exercise_content": "Maximize bottleneck bandwidth path between two nodes in a network."
+          },
+          {
+            "exercise_code": "C-13.20",
+            "exercise_content": "Add ≤ n edges in O(n+m) time to make a connected graph biconnected."
+          },
+          {
+            "exercise_code": "C-13.21",
+            "exercise_content": "Given bandwidths on edges, choose n−1 edges to maximize total bandwidth (maximum spanning tree)."
+          },
+          {
+            "exercise_code": "C-13.22",
+            "exercise_content": "Earliest-arrival flight scheduling with connection times; algorithm and runtime in terms of n,m."
+          },
+          {
+            "exercise_code": "C-13.23",
+            "exercise_content": "Maximize gold collected in a DAG maze path ENTER→EXIT (no retracing) using DP."
+          },
+          {
+            "exercise_code": "C-13.24",
+            "exercise_content": "All-pairs shortest paths via Floyd–Warshall’s variant in O(n^3)."
+          },
+          {
+            "exercise_code": "C-13.25",
+            "exercise_content": "Adjacency matrix powers and Boolean/weighted semiring interpretations; what Mp encodes."
+          },
+          {
+            "exercise_code": "C-13.26",
+            "exercise_content": "Test bipartite in O(n+m); describe and analyze."
+          },
+          {
+            "exercise_code": "C-13.27",
+            "exercise_content": "Baruvka’s algorithm: prove correctness and O(m log n) time."
+          },
+          {
+            "exercise_code": "C-13.28",
+            "exercise_content": "MST in O(m log* n) when edge weights are integers in [1,n]."
+          }
+        ],
+        "projects": [
+          {
+            "exercise_code": "P-13.1",
+            "exercise_content": "Implement simplified undirected-graph ADT using adjacency matrix (constructor from vertex set and edge pairs)."
+          },
+          {
+            "exercise_code": "P-13.2",
+            "exercise_content": "Implement simplified undirected-graph ADT using adjacency lists."
+          },
+          {
+            "exercise_code": "P-13.3",
+            "exercise_content": "Implement simplified undirected-graph ADT using edge lists."
+          },
+          {
+            "exercise_code": "P-13.4",
+            "exercise_content": "Extend adjacency-list graph to full graph ADT including directed edges."
+          },
+          {
+            "exercise_code": "P-13.5",
+            "exercise_content": "Implement a generic BFS with template method hooks."
+          },
+          {
+            "exercise_code": "P-13.6",
+            "exercise_content": "Implement topological sorting."
+          },
+          {
+            "exercise_code": "P-13.7",
+            "exercise_content": "Implement Floyd–Warshall transitive closure."
+          },
+          {
+            "exercise_code": "P-13.8",
+            "exercise_content": "Experimentally compare repeated DFS vs Floyd–Warshall for transitive closure."
+          },
+          {
+            "exercise_code": "P-13.9",
+            "exercise_content": "Implement Dijkstra for integer weights."
+          },
+          {
+            "exercise_code": "P-13.10",
+            "exercise_content": "Implement Kruskal for integer weights."
+          },
+          {
+            "exercise_code": "P-13.11",
+            "exercise_content": "Implement Prim–Jarník for integer weights."
+          },
+          {
+            "exercise_code": "P-13.12",
+            "exercise_content": "Experimentally compare Kruskal vs Prim–Jarník on random graphs."
+          },
+          {
+            "exercise_code": "P-13.13",
+            "exercise_content": "Generate and solve mazes via MST on dual grid graph; visualize."
+          },
+          {
+            "exercise_code": "P-13.14",
+            "exercise_content": "Build shortest-hop routing tables from node connectivity lists."
+          }
+        ]
+      }
+    }
+  ]
+}

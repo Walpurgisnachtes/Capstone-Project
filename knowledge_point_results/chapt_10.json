@@ -1,0 +1,317 @@
+{
+  "chapter_code": "Chapter 10",
+  "chapter_title": "Search Trees",
+  "knowledge_points": [
+    {
+      "topic": "Binary Search Trees (BST)",
+      "topic_knowledge_points": [
+        "A BST stores entries at internal nodes such that keys in the left subtree are ≤ the node’s key and keys in the right subtree are ≥ the node’s key.",
+        "BST find, insert, and erase follow a root-to-leaf path and run in O(h) time where h is the tree height, with inorder traversal yielding keys in nondecreasing order.",
+        "BST insertion expands an external node; deletion removes a node with an external child or swaps with the inorder successor then removes, preserving BST order."
+      ]
+    },
+    {
+      "topic": "BST C++ Implementation",
+      "topic_knowledge_points": [
+        "A BST can be implemented with a linked binary tree, iterators for inorder navigation, and a super root to define end, supporting O(h) find/insert/erase.",
+        "Iterator++ on BST moves to the inorder successor by descending to the leftmost node of the right subtree or walking up from a left chain."
+      ]
+    },
+    {
+      "topic": "AVL Trees",
+      "topic_knowledge_points": [
+        "An AVL tree enforces the height-balance property: for every internal node, the heights of its two children differ by at most 1.",
+        "AVL trees have height O(log n) via a Fibonacci-like lower bound on nodes per height, giving O(log n) worst-case find/insert/erase.",
+        "AVL rebalancing uses a trinode restructuring (single or double rotation) at the first unbalanced ancestor after insert (one rotation) and possibly multiple after erase."
+      ]
+    },
+    {
+      "topic": "AVL C++ Implementation",
+      "topic_knowledge_points": [
+        "An AVL implementation augments each node with its height, provides setters/getters, detects imbalance, finds the tallest grandchild, and performs restructure, with O(log n) updates."
+      ]
+    },
+    {
+      "topic": "Splay Trees",
+      "topic_knowledge_points": [
+        "Splaying moves a accessed node x to the root via zig, zig-zig, or zig-zag steps, each a constant-time rotation pattern.",
+        "Splay trees guarantee O(log n) amortized time per operation (search, insert, delete) by accounting and potential analysis, despite O(n) worst-case height."
+      ]
+    },
+    {
+      "topic": "(2,4) Trees",
+      "topic_knowledge_points": [
+        "(2,4) trees are multi-way search trees where internal nodes have 2–4 children and all external nodes are at the same depth, yielding height O(log n).",
+        "Insertion may overflow a 5-node and is fixed by splitting the node and pushing up the middle key, cascading up to O(log n) times.",
+        "Deletion removes from a leaf-like node; underflow is fixed by transfer from a 3-/4-node sibling or fusion with a 2-node sibling, cascading up to O(log n) times."
+      ]
+    },
+    {
+      "topic": "Red-Black Trees",
+      "topic_knowledge_points": [
+        "A red-black tree is a BST with root black, external nodes black, no red node with red child, and equal black depth from root to external nodes, giving height O(log n).",
+        "Red-black insertion colors new node red and fixes double-red via either a single trinode restructuring (Case 1) or recoloring with possible propagation (Case 2).",
+        "Red-black deletion removes like BST then fixes double-black via restructuring (Case 1), recoloring (Case 2), or adjustment plus a final fix (Case 3), with at most two rotations."
+      ]
+    },
+    {
+      "topic": "Correspondences and Performance",
+      "topic_knowledge_points": [
+        "Red-black trees correspond to (2,4) trees by merging red nodes up or splitting (2,4) nodes down, explaining their O(log n) balancing via constant rotations per update.",
+        "All balanced search trees here (AVL, (2,4), red-black) support size/empty in O(1) and find/insert/erase in O(log n) worst case."
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "topic_exercise": {
+        "reinforcement": [
+          {
+            "exercise_code": "R-10.1",
+            "exercise_content": "If we insert the entries (1,A), (2,B), (3,C), (4,D), and (5,E), in this order, into an initially empty binary search tree, what will it look like?"
+          },
+          {
+            "exercise_code": "R-10.2",
+            "exercise_content": "We defined a BST so that equal keys can be in either subtree; if equal keys are restricted to the right subtree, what must a subtree containing only equal keys look like?"
+          },
+          {
+            "exercise_code": "R-10.3",
+            "exercise_content": "Insert into an empty BST the keys 30, 40, 24, 58, 48, 26, 11, 13 (in this order) and draw the tree after each insertion."
+          },
+          {
+            "exercise_code": "R-10.4",
+            "exercise_content": "How many different BSTs can store the keys {1,2,3}?"
+          },
+          {
+            "exercise_code": "R-10.5",
+            "exercise_content": "Give a small example showing that the order of insertions affects the resulting BST."
+          },
+          {
+            "exercise_code": "R-10.6",
+            "exercise_content": "Give a small example showing that the order of insertions affects the resulting AVL tree."
+          },
+          {
+            "exercise_code": "R-10.7",
+            "exercise_content": "Are the rotations in Figures 10.9 and 10.11 single or double rotations?"
+          },
+          {
+            "exercise_code": "R-10.8",
+            "exercise_content": "Draw the AVL tree after inserting key 52 into the AVL tree of Figure 10.11(b)."
+          },
+          {
+            "exercise_code": "R-10.9",
+            "exercise_content": "Draw the AVL tree after removing key 62 from the AVL tree of Figure 10.11(b)."
+          },
+          {
+            "exercise_code": "R-10.10",
+            "exercise_content": "Explain why performing a rotation in an n-node binary tree represented by a vector takes Ω(n) time."
+          },
+          {
+            "exercise_code": "R-10.11",
+            "exercise_content": "Is the search tree of Figure 10.1(a) a (2,4) tree? Why or why not?"
+          },
+          {
+            "exercise_code": "R-10.12",
+            "exercise_content": "If an alternative split partitions a 5-node into a 2-node and a 3-node, which of the keys k1, k2, k3, or k4 goes to the parent? Why?"
+          },
+          {
+            "exercise_code": "R-10.13",
+            "exercise_content": "Show that a (2,4) tree’s structure can differ depending on insertion order."
+          },
+          {
+            "exercise_code": "R-10.14",
+            "exercise_content": "Draw four different red-black trees that correspond to the same (2,4) tree."
+          },
+          {
+            "exercise_code": "R-10.15",
+            "exercise_content": "For K = {1..15} draw (a) a (2,4) tree using the fewest nodes and (b) a (2,4) tree using the most nodes."
+          },
+          {
+            "exercise_code": "R-10.16",
+            "exercise_content": "Insert keys (5,16,22,45,2,10,18,30,50,12,1) into (a) a (2,4) tree and (b) a red-black tree, drawing the results."
+          },
+          {
+            "exercise_code": "R-10.17",
+            "exercise_content": "For each statement about red-black trees, justify if true or give a counterexample if false: subtree is RB-tree; sibling of external is external or red; unique (2,4) tree per RB-tree; unique RB-tree per (2,4) tree."
+          },
+          {
+            "exercise_code": "R-10.18",
+            "exercise_content": "Draw a red-black tree that is not an AVL tree."
+          },
+          {
+            "exercise_code": "R-10.19",
+            "exercise_content": "For a tree of 100,000 entries, give the worst-case height if it is an AVL, (2,4), red-black, splay, or plain BST."
+          },
+          {
+            "exercise_code": "R-10.20",
+            "exercise_content": "On an initially empty splay tree, perform: (a) insert even keys 0..18; (b) search odd keys 1..19; (c) delete even keys 0..18; draw after each stage."
+          },
+          {
+            "exercise_code": "R-10.21",
+            "exercise_content": "What does a splay tree look like if its entries are accessed in increasing key order?"
+          },
+          {
+            "exercise_code": "R-10.22",
+            "exercise_content": "Explain how to use an AVL or red-black tree to sort n comparable elements in O(n log n) worst-case time."
+          },
+          {
+            "exercise_code": "R-10.23",
+            "exercise_content": "Can a splay tree sort n comparable elements in O(n log n) worst case? Why or why not?"
+          },
+          {
+            "exercise_code": "R-10.24",
+            "exercise_content": "Explain why an inorder listing of a BST’s entries is the same regardless of whether it is maintained as AVL, splay, or red-black."
+          }
+        ],
+        "creativity": [
+          {
+            "exercise_code": "C-10.1",
+            "exercise_content": "Modify a BST to find the median entry (rank ⌊n/2⌋) and describe both the modification and the median-finding algorithm."
+          },
+          {
+            "exercise_code": "C-10.2",
+            "exercise_content": "Design a variation of TreeSearch to implement findAll(k) in O(h + s) time on a BST."
+          },
+          {
+            "exercise_code": "C-10.3",
+            "exercise_content": "Describe eraseAll(k) that removes all entries with key k in O(h + s) time on a BST."
+          },
+          {
+            "exercise_code": "C-10.4",
+            "exercise_content": "Draw an AVL where a single erase triggers Ω(log n) rotations from a leaf to the root."
+          },
+          {
+            "exercise_code": "C-10.5",
+            "exercise_content": "Implement eraseAll(k) on an AVL in O(s log n) time where s is the output size."
+          },
+          {
+            "exercise_code": "C-10.6",
+            "exercise_content": "Describe changes needed in the BST implementation to support an ordered dictionary that allows equal keys."
+          },
+          {
+            "exercise_code": "C-10.7",
+            "exercise_content": "If referencing the left-most internal node is maintained in an AVL, show how to maintain it for other map functions so first runs in O(1)."
+          },
+          {
+            "exercise_code": "C-10.8",
+            "exercise_content": "Show any n-node binary tree can be converted to any other n-node binary tree using O(n) rotations."
+          },
+          {
+            "exercise_code": "C-10.9",
+            "exercise_content": "Implement findAllInRange(k1,k2) on an AVL in O(log n + s) time."
+          },
+          {
+            "exercise_code": "C-10.10",
+            "exercise_content": "Modify an AVL to support countAllInRange(k1,k2) in O(log n) time."
+          },
+          {
+            "exercise_code": "C-10.11",
+            "exercise_content": "Construct a splay tree and a red-black tree on the same ten entries so their preorder traversals are identical, showing update sequences."
+          },
+          {
+            "exercise_code": "C-10.12",
+            "exercise_content": "Show nodes that become unbalanced during AVL insert may be nonconsecutive on the path to the root."
+          },
+          {
+            "exercise_code": "C-10.13",
+            "exercise_content": "Show at most one node becomes unbalanced after removeAboveExternal during erase in an AVL."
+          },
+          {
+            "exercise_code": "C-10.14",
+            "exercise_content": "Show at most one trinode restructuring is needed to restore balance after any AVL insertion."
+          },
+          {
+            "exercise_code": "C-10.15",
+            "exercise_content": "Given two (2,4) trees T and U with all keys in T less than those in U, join them in O(log n + log m) time."
+          },
+          {
+            "exercise_code": "C-10.16",
+            "exercise_content": "Repeat the previous join for red-black trees T and U."
+          },
+          {
+            "exercise_code": "C-10.17",
+            "exercise_content": "Justify Proposition 10.7 that an n-entry multi-way search tree has n+1 external nodes."
+          },
+          {
+            "exercise_code": "C-10.18",
+            "exercise_content": "Implement a red-black tree without extra color space for nodes when keys are distinct."
+          },
+          {
+            "exercise_code": "C-10.19",
+            "exercise_content": "In O(log n) time split an RB-tree T by key k into two RB-trees T′ and T′′ containing keys < k and > k, respectively, destroying T."
+          },
+          {
+            "exercise_code": "C-10.20",
+            "exercise_content": "Show any AVL tree can be colored to form a red-black tree."
+          },
+          {
+            "exercise_code": "C-10.21",
+            "exercise_content": "Design a mergeable-heap ADT with insert, removeMin, unionWith, and min supporting O(log n) operations."
+          },
+          {
+            "exercise_code": "C-10.22",
+            "exercise_content": "Perform an amortized analysis of half-splay trees where splaying stops once depth halves."
+          },
+          {
+            "exercise_code": "C-10.23",
+            "exercise_content": "Describe top-down splaying that combines search and splay in one pass, detailing zig-zig, zig-zag, and zig substeps."
+          },
+          {
+            "exercise_code": "C-10.24",
+            "exercise_content": "Describe a sequence of accesses producing an n-node splay tree that becomes an alternating single chain."
+          },
+          {
+            "exercise_code": "C-10.25",
+            "exercise_content": "Implement a vector supporting insert and at in O(log n) worst-case time."
+          }
+        ],
+        "projects": [
+          {
+            "exercise_code": "P-10.1",
+            "exercise_content": "Implement the “Jumping Leprechauns” n-body simulation using an ordered map for horizon positions."
+          },
+          {
+            "exercise_code": "P-10.2",
+            "exercise_content": "Extend the BST implementation to support all ordered map ADT functions."
+          },
+          {
+            "exercise_code": "P-10.3",
+            "exercise_content": "Implement a RestructurableNodeBinaryTree supporting rotations, as a component for AVL trees."
+          },
+          {
+            "exercise_code": "P-10.4",
+            "exercise_content": "Implement all ordered map ADT functions using an AVL tree."
+          },
+          {
+            "exercise_code": "P-10.5",
+            "exercise_content": "Implement all ordered map ADT functions using a (2,4) tree."
+          },
+          {
+            "exercise_code": "P-10.6",
+            "exercise_content": "Implement all ordered map ADT functions using a red-black tree."
+          },
+          {
+            "exercise_code": "P-10.7",
+            "exercise_content": "Team project: each member implements a map with a different search tree and compare performance."
+          },
+          {
+            "exercise_code": "P-10.8",
+            "exercise_content": "Implement conversions between red-black trees and (2,4) trees in both directions."
+          },
+          {
+            "exercise_code": "P-10.9",
+            "exercise_content": "Implement a splay-tree-based map and compare experimentally with the STL map (red-black tree)."
+          },
+          {
+            "exercise_code": "P-10.10",
+            "exercise_content": "Compare bottom-up versus top-down splaying implementations experimentally."
+          },
+          {
+            "exercise_code": "P-10.11",
+            "exercise_content": "Implement a BST-based dictionary supporting duplicate keys and traversal output in preorder, inorder, and postorder."
+          }
+        ]
+      }
+    }
+  ]
+}

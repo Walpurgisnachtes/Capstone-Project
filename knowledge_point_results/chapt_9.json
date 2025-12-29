@@ -1,0 +1,252 @@
+{
+  "chapter_code": "Chapter 9",
+  "chapter_title": "Hash Tables, Maps, and Skip Lists",
+  "knowledge_points": [
+    {
+      "topic": "Map ADT and Interfaces",
+      "topic_knowledge_points": [
+        "A map stores unique key–value entries and supports size, empty, find, put (insert/replace), erase by key or iterator, and iteration with begin/end.",
+        "Entries use the composition pattern to pair a key and value with accessor and mutator functions.",
+        "The STL map is an ordered associative container templated by <K,V> that provides iterators, find, insert(pair), operator[], erase, begin, and end."
+      ]
+    },
+    {
+      "topic": "Hash Tables Fundamentals",
+      "topic_knowledge_points": [
+        "A hash table uses a bucket array A of capacity N and a hash function h(k) to map keys to buckets, aiming to minimize collisions.",
+        "Hash functions are built from a hash code (mapping keys to integers) and a compression function (mapping to [0,N−1]).",
+        "Good hash codes include integer casts, polynomial hash codes (with suitable base), cyclic-shift variants, and bit reinterpretation for floats.",
+        "Compression functions include the division method (|k| mod N with N prime) and the MAD method h(k)=|(a·k+b)| mod N with a mod N≠0."
+      ]
+    },
+    {
+      "topic": "Collision Handling and Load Factor",
+      "topic_knowledge_points": [
+        "Separate chaining stores each bucket as a small list-based map, giving expected O(1) find/put/erase when load factor λ = n/N is O(1).",
+        "Open addressing resolves collisions within the table via linear probing, quadratic probing, or double hashing, typically requiring λ<1.",
+        "Rehashing enlarges the table (often doubling to a new prime capacity) and reinserts all entries to keep λ below a threshold (e.g., <0.5 for open addressing, <0.9 for chaining)."
+      ]
+    },
+    {
+      "topic": "Ordered Maps and Search Tables",
+      "topic_knowledge_points": [
+        "An ordered map augments a map with firstEntry, lastEntry, ceilingEntry, floorEntry, lowerEntry, and higherEntry using a comparator-defined total order.",
+        "An ordered search table stores entries in a sorted vector, supports binary search for find in O(log n), and has O(n) insert/erase due to shifts."
+      ]
+    },
+    {
+      "topic": "Skip Lists",
+      "topic_knowledge_points": [
+        "A skip list consists of multiple levels S0..Sh where S0 has all keys and each higher level contains a random subset, enabling fast search and updates.",
+        "SkipSearch scans forward within a level and drops down, yielding expected O(log n) time for find, insert, and erase with O(n) expected space.",
+        "Insertion builds a tower for (k,v) by repeated coin flips to insert at successive higher levels until tails, updating links accordingly."
+      ]
+    },
+    {
+      "topic": "Dictionaries (Multi-map)",
+      "topic_knowledge_points": [
+        "A dictionary allows multiple entries per key and supports size, empty, find (any), findAll (iterator range of equal keys), insert, erase by key or iterator, and iteration.",
+        "A hash-based dictionary can support findAll by storing equal keys contiguously within buckets and returning a (begin,end) iterator range."
+      ]
+    },
+    {
+      "topic": "Performance Comparisons",
+      "topic_knowledge_points": [
+        "Unordered list maps have O(1) insert and O(n) find/erase, hash tables have expected O(1) find/put/erase (O(n) worst-case), and search tables have O(log n) find with O(n) insert/erase.",
+        "Skip lists implement ordered maps with expected O(log n) for ordered queries and updates and O(1) for first/last."
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "topic_exercise": {
+        "reinforcement": [
+          {
+            "exercise_code": "R-9.1",
+            "exercise_content": "Which collision-handling schemes tolerate load factor > 1 and which do not?"
+          },
+          {
+            "exercise_code": "R-9.2",
+            "exercise_content": "What is the worst-case running time for inserting n entries into an initially empty list-based map?"
+          },
+          {
+            "exercise_code": "R-9.3",
+            "exercise_content": "What is the worst-case asymptotic running time for performing n erase() operations on an ordered search table map initially containing 2n entries?"
+          },
+          {
+            "exercise_code": "R-9.4",
+            "exercise_content": "Describe how to use a skip-list map to implement the dictionary ADT with equal keys allowed."
+          },
+          {
+            "exercise_code": "R-9.5",
+            "exercise_content": "Describe how an ordered list implemented as a doubly linked list could implement the map ADT."
+          },
+          {
+            "exercise_code": "R-9.6",
+            "exercise_content": "Propose a good hash code for a vehicle identification string of the form “9X9XX99X9XX999999.”"
+          },
+          {
+            "exercise_code": "R-9.7",
+            "exercise_content": "Draw the 11-entry hash table using h(i)=(3i+5) mod 11 for keys 12,44,13,88,23,94,11,39,20,16,5 with chaining."
+          },
+          {
+            "exercise_code": "R-9.8",
+            "exercise_content": "Give the result of R-9.7 using linear probing."
+          },
+          {
+            "exercise_code": "R-9.9",
+            "exercise_content": "Show the result of R-9.7 using quadratic probing up to the failure point."
+          },
+          {
+            "exercise_code": "R-9.10",
+            "exercise_content": "Give the result of R-9.7 using double hashing with h′(k)=7−(k mod 7)."
+          },
+          {
+            "exercise_code": "R-9.11",
+            "exercise_content": "Give pseudo-code for insertion into a hash table using quadratic probing with deactivated-item markers."
+          },
+          {
+            "exercise_code": "R-9.12",
+            "exercise_content": "Specify ordered dictionary operations corresponding to ordered map functions, handling duplicate keys."
+          },
+          {
+            "exercise_code": "R-9.13",
+            "exercise_content": "Show the result of rehashing Figure 9.4 into size 19 using h(k)=3k mod 17."
+          },
+          {
+            "exercise_code": "R-9.14",
+            "exercise_content": "Explain why a hash table is not suited for implementing the ordered dictionary ADT."
+          },
+          {
+            "exercise_code": "R-9.15",
+            "exercise_content": "What are the worst-case and best-case running times for inserting n items into an empty hash table with chaining?"
+          },
+          {
+            "exercise_code": "R-9.16",
+            "exercise_content": "Draw the skip list after operations erase(38), insert(48,x), insert(24,y), erase(55) starting from Figure 9.12, noting coin flips."
+          },
+          {
+            "exercise_code": "R-9.17",
+            "exercise_content": "Give pseudo-code for erase in a skip list."
+          },
+          {
+            "exercise_code": "R-9.18",
+            "exercise_content": "Analyze expected running time for maxima-set functions when inserting n pairs with monotone worsening or improving trade-offs, and describe the final dictionary contents."
+          },
+          {
+            "exercise_code": "R-9.19",
+            "exercise_content": "Argue why location-aware entries are unnecessary for a dictionary implemented with a good hash table."
+          }
+        ],
+        "creativity": [
+          {
+            "exercise_code": "C-9.1",
+            "exercise_content": "Describe how to perform each ordered map function (first/last/ceiling/floor/lower/higher) using a skip list."
+          },
+          {
+            "exercise_code": "C-9.2",
+            "exercise_content": "Use a skip list to implement the vector ADT so index-based insertions and removals are O(log n) expected time."
+          },
+          {
+            "exercise_code": "C-9.3",
+            "exercise_content": "Given two ordered dictionaries S and T (arrays) each of size n, design an O(log^2 n) algorithm to find the k-th smallest key in the union."
+          },
+          {
+            "exercise_code": "C-9.4",
+            "exercise_content": "Improve the previous problem to an O(log n) algorithm."
+          },
+          {
+            "exercise_code": "C-9.5",
+            "exercise_content": "Design binary-search-based findAll(k) on an ordered array dictionary running in O(log n + s) time where s is output size."
+          },
+          {
+            "exercise_code": "C-9.6",
+            "exercise_content": "Implement a sieve-based function to find a prime between M and 2M for hash table sizing."
+          },
+          {
+            "exercise_code": "C-9.7",
+            "exercise_content": "Describe removal in a linear-probing hash table without tombstones by rearranging contents to preserve search correctness."
+          },
+          {
+            "exercise_code": "C-9.8",
+            "exercise_content": "Given n cost-performance pairs, compute maxima pairs in O(n log n) time."
+          },
+          {
+            "exercise_code": "C-9.9",
+            "exercise_content": "Analyze quadratic probing clustering: (a) show f(j) mod N has at most (N+1)/2 distinct values for N prime; (b) show alternate ±j^2 scheme checks every bucket when N≡3 mod 4."
+          },
+          {
+            "exercise_code": "C-9.10",
+            "exercise_content": "Show skip lists can be implemented without above() and before() using top-down scan-forward insertion and removal."
+          },
+          {
+            "exercise_code": "C-9.11",
+            "exercise_content": "Given an n×n array with each row’s 1’s before 0’s, count 1’s in O(n log n) time."
+          },
+          {
+            "exercise_code": "C-9.12",
+            "exercise_content": "Design an ordered dictionary for n elements with k distinct keys supporting ordered operations in O(log k + s) expected time."
+          },
+          {
+            "exercise_code": "C-9.13",
+            "exercise_content": "Design a dictionary for n entries with r distinct hash codes supporting findAll in O(1 + s) expected time and other operations in O(1) expected time."
+          },
+          {
+            "exercise_code": "C-9.14",
+            "exercise_content": "Implement a bag ADT supporting add(e) and remove(any) both in O(1) time."
+          },
+          {
+            "exercise_code": "C-9.15",
+            "exercise_content": "Modify a skip list to support median() returning S0[⌊n/2⌋] in O(log n) expected time."
+          }
+        ],
+        "projects": [
+          {
+            "exercise_code": "P-9.1",
+            "exercise_content": "Implement a hash-table-based spell-checker supporting edits (swap, insert, delete, replace) and optionally phonetics."
+          },
+          {
+            "exercise_code": "P-9.2",
+            "exercise_content": "Implement the dictionary ADT using a linked list."
+          },
+          {
+            "exercise_code": "P-9.3",
+            "exercise_content": "Implement the map ADT using a vector."
+          },
+          {
+            "exercise_code": "P-9.4",
+            "exercise_content": "Implement an ordered dictionary using a skip list and define dictionary versions of ordered map functions."
+          },
+          {
+            "exercise_code": "P-9.5",
+            "exercise_content": "Implement the map ADT with a separate-chaining hash table without using STL adapters."
+          },
+          {
+            "exercise_code": "P-9.6",
+            "exercise_content": "Implement the ordered map ADT using a skip list."
+          },
+          {
+            "exercise_code": "P-9.7",
+            "exercise_content": "Provide a graphical animation for skip list operations showing insertions and removals across levels."
+          },
+          {
+            "exercise_code": "P-9.8",
+            "exercise_content": "Implement a dictionary with location-aware entries using an ordered list."
+          },
+          {
+            "exercise_code": "P-9.9",
+            "exercise_content": "Compare collision rates for various string hash codes experimentally using only true hash-code collisions."
+          },
+          {
+            "exercise_code": "P-9.10",
+            "exercise_content": "Perform a comparative collision analysis for 10-digit telephone numbers."
+          },
+          {
+            "exercise_code": "P-9.11",
+            "exercise_content": "Implement a skip-list class and use it to build map and dictionary ADTs, including location-aware dictionary functions."
+          }
+        ]
+      }
+    }
+  ]
+}

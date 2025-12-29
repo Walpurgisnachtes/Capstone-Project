@@ -1,0 +1,294 @@
+{
+  "chapter_code": "Chapter 8",
+  "chapter_title": "Heaps and Priority Queues",
+  "knowledge_points": [
+    {
+      "topic": "Priority Queue Foundations",
+      "topic_knowledge_points": [
+        "A priority queue stores elements by priority (keys) and supports insert, min, and removeMin without positional access.",
+        "Keys must be compared with a total order (reflexive, antisymmetric, transitive) to avoid contradictions.",
+        "Comparators encapsulate ordering by overloading operator() to define a less-than relation, enabling multiple orderings for the same element type.",
+        "A priority queue ADT also includes size and empty with min returning a const reference to the smallest element."
+      ]
+    },
+    {
+      "topic": "Implementations and STL",
+      "topic_knowledge_points": [
+        "PriorityQueueSort inserts all elements into a priority queue and then repeatedly removes the minimum to sort, with complexity depending on the queue implementation.",
+        "The STL priority_queue is a max-priority queue (top is largest) and is templated by element type, underlying container, and comparator."
+      ]
+    },
+    {
+      "topic": "List-Based Priority Queues",
+      "topic_knowledge_points": [
+        "An unsorted list gives O(1) insert and Θ(n) min/removeMin, while a sorted list gives O(n) insert and O(1) min/removeMin.",
+        "Selection-sort uses an unsorted-list priority queue and runs in O(n^2), and insertion-sort uses a sorted-list priority queue and also runs in O(n^2)."
+      ]
+    },
+    {
+      "topic": "Heaps and Complete Binary Trees",
+      "topic_knowledge_points": [
+        "A heap is a complete binary tree with the heap-order property (each node’s key ≥ its parent’s key) so the minimum is at the root.",
+        "A complete binary tree has height ⌊log n⌋ and can be represented compactly by a vector using level numbering f(root)=1, f(left)=2f(parent), f(right)=2f(parent)+1.",
+        "Heap insert uses addLast followed by up-heap bubbling; removeMin swaps root with last, removes last, then performs down-heap bubbling.",
+        "Heap-based priority queues support size, empty, min in O(1) and insert, removeMin in O(log n)."
+      ]
+    },
+    {
+      "topic": "Heap-Sort",
+      "topic_knowledge_points": [
+        "Heap-sort builds a heap and repeatedly removes the minimum (or maximum) to achieve O(n log n) total time.",
+        "An in-place heap-sort stores the heap within the array using a reverse comparator and performs up-heap and down-heap operations over index ranges."
+      ]
+    },
+    {
+      "topic": "Bottom-Up Heap Construction",
+      "topic_knowledge_points": [
+        "Bottom-up heap construction builds a heap in O(n) time by recursively forming subheaps and performing a single down-heap from each root."
+      ]
+    },
+    {
+      "topic": "Adaptable Priority Queues",
+      "topic_knowledge_points": [
+        "An adaptable priority queue adds insert returning a position, remove(p), and replace(p,e) to modify or delete arbitrary entries.",
+        "Location-aware entries use locators to decouple positions from physical locations so entry moves (bubbling) keep external references valid."
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "topic_exercise": {
+        "reinforcement": [
+          {
+            "exercise_code": "R-8.1",
+            "exercise_content": "What are the running times of each function of the standard priority queue ADT if implemented by adapting the STL priority queue?"
+          },
+          {
+            "exercise_code": "R-8.2",
+            "exercise_content": "How long does it take to remove the ⌈log n⌉ smallest elements from a heap with n entries using removeMin()?"
+          },
+          {
+            "exercise_code": "R-8.3",
+            "exercise_content": "Show that using only < and boolean operators (&&, ||, !) one can implement >, <=, >=, ==, !=."
+          },
+          {
+            "exercise_code": "R-8.4",
+            "exercise_content": "Explain how to implement a composition-based priority queue (key-element pairs) by adapting a comparator-based priority queue."
+          },
+          {
+            "exercise_code": "R-8.5",
+            "exercise_content": "If each node v of a binary tree T is labeled with preorder rank as key, under what circumstances is T a heap?"
+          },
+          {
+            "exercise_code": "R-8.6",
+            "exercise_content": "Show the output from the sequence: insert(5,a), insert(4,b), insert(7,i), insert(1,d), removeMin(), insert(3,j), insert(6,c), removeMin(), removeMin(), insert(8,g), removeMin(), insert(2,h), removeMin(), removeMin()."
+          },
+          {
+            "exercise_code": "R-8.7",
+            "exercise_content": "Choose a data structure to process timestamped events with insert and extract-min operations and justify your choice."
+          },
+          {
+            "exercise_code": "R-8.8",
+            "exercise_content": "Write an adapter class that uses any priority queue P and comparator C to implement a max-priority queue with removeMax via a reversed comparator."
+          },
+          {
+            "exercise_code": "R-8.9",
+            "exercise_content": "Illustrate selection-sort on (22,15,36,44,10,3,9,13,29,25)."
+          },
+          {
+            "exercise_code": "R-8.10",
+            "exercise_content": "Illustrate insertion-sort on the same input sequence as R-8.9."
+          },
+          {
+            "exercise_code": "R-8.11",
+            "exercise_content": "Give a worst-case sequence of n elements for insertion-sort and show it runs in Ω(n^2)."
+          },
+          {
+            "exercise_code": "R-8.12",
+            "exercise_content": "At which nodes of a heap can the largest key be stored?"
+          },
+          {
+            "exercise_code": "R-8.13",
+            "exercise_content": "In defining “to the left of” for two nodes of a binary tree, can preorder or postorder be used instead of inorder?"
+          },
+          {
+            "exercise_code": "R-8.14",
+            "exercise_content": "Illustrate heap-sort on (2,5,16,4,10,23,39,18,26,15)."
+          },
+          {
+            "exercise_code": "R-8.15",
+            "exercise_content": "If node v of a complete binary tree stores key-entry (f(v),0) with f the level number, is T a heap? Why or why not?"
+          },
+          {
+            "exercise_code": "R-8.16",
+            "exercise_content": "Explain why the case with right child internal and left child external is not considered in down-heap bubbling."
+          },
+          {
+            "exercise_code": "R-8.17",
+            "exercise_content": "For a heap with seven distinct elements, can preorder, inorder, or postorder list elements in sorted order? Provide examples or counterexamples."
+          },
+          {
+            "exercise_code": "R-8.18",
+            "exercise_content": "Show that in a heap with n keys, the insertion position is the node with number n+1 under level numbering."
+          },
+          {
+            "exercise_code": "R-8.19",
+            "exercise_content": "For an H with 15 entries using vector representation, list the index visitation order for preorder, inorder, and postorder traversals."
+          },
+          {
+            "exercise_code": "R-8.20",
+            "exercise_content": "Show that ∑_{i=1}^n log i is Ω(n log n)."
+          },
+          {
+            "exercise_code": "R-8.21",
+            "exercise_content": "Give a heap where a preorder traversal is not nondecreasing."
+          },
+          {
+            "exercise_code": "R-8.22",
+            "exercise_content": "Give a heap where a postorder traversal is not nonincreasing."
+          },
+          {
+            "exercise_code": "R-8.23",
+            "exercise_content": "Show all steps of removing key 16 from the heap in Figure 8.3."
+          },
+          {
+            "exercise_code": "R-8.24",
+            "exercise_content": "Draw a heap of odd keys 1..59 where inserting key 32 causes up-heap bubbling to reach a child of the root."
+          },
+          {
+            "exercise_code": "R-8.25",
+            "exercise_content": "Give pseudo-code for a nonrecursive in-place heap-sort algorithm."
+          },
+          {
+            "exercise_code": "R-8.26",
+            "exercise_content": "Choose efficient data structures to play Unmonopoly where richest gives half to poorest each turn, and justify."
+          }
+        ],
+        "creativity": [
+          {
+            "exercise_code": "C-8.1",
+            "exercise_content": "Design a scheme to enter buy/sell stock orders so each is processed or waits appropriately with O(log n) insert time."
+          },
+          {
+            "exercise_code": "C-8.2",
+            "exercise_content": "Extend the stock-order solution to allow users to update prices for pending orders."
+          },
+          {
+            "exercise_code": "C-8.3",
+            "exercise_content": "Write a comparator for integers ordering by the count of 1-bits in their binary representations."
+          },
+          {
+            "exercise_code": "C-8.4",
+            "exercise_content": "Implement the stack ADT using only a priority queue and one extra member variable."
+          },
+          {
+            "exercise_code": "C-8.5",
+            "exercise_content": "Implement the standard queue ADT using only a priority queue and one extra member variable."
+          },
+          {
+            "exercise_code": "C-8.6",
+            "exercise_content": "Describe a priority queue implementation using a sorted array achieving O(1) min/removeMin and O(n) insert."
+          },
+          {
+            "exercise_code": "C-8.7",
+            "exercise_content": "Describe an in-place selection-sort using only O(1) extra space beyond the input array."
+          },
+          {
+            "exercise_code": "C-8.8",
+            "exercise_content": "Implement insertion-sort using only the array A and at most six additional base-type variables."
+          },
+          {
+            "exercise_code": "C-8.9",
+            "exercise_content": "Implement heap-sort using only the array A and at most six additional base-type variables."
+          },
+          {
+            "exercise_code": "C-8.10",
+            "exercise_content": "Describe a sequence of n insertions into a heap that forces Ω(n log n) processing time."
+          },
+          {
+            "exercise_code": "C-8.11",
+            "exercise_content": "Maintain a pointer from each last/external node to its right neighbor to find the last node in O(1) per operation in a linked-structure heap."
+          },
+          {
+            "exercise_code": "C-8.12",
+            "exercise_content": "Using root-to-node binary path codes, design an O(log n) algorithm to find the last node in a complete binary tree without storing a last-node pointer."
+          },
+          {
+            "exercise_code": "C-8.13",
+            "exercise_content": "Given only BinaryTree ADT functions and a current last node, find the insertion point (new last) efficiently for all cases and analyze running time."
+          },
+          {
+            "exercise_code": "C-8.14",
+            "exercise_content": "Given heap T and key k, report all entries with keys ≤ k in time proportional to the number reported."
+          },
+          {
+            "exercise_code": "C-8.15",
+            "exercise_content": "Show that for any n, there is an insertion sequence requiring Ω(n log n) time in a heap."
+          },
+          {
+            "exercise_code": "C-8.16",
+            "exercise_content": "Justify the time bounds in Table 8.1 for list-based priority queues."
+          },
+          {
+            "exercise_code": "C-8.17",
+            "exercise_content": "Compute the k-th smallest of n distinct integers in O(n + k log n) time."
+          },
+          {
+            "exercise_code": "C-8.18",
+            "exercise_content": "Combine two heap-ordered binary trees T1 and T2 into a heap-ordered tree T in O(h1 + h2) time."
+          },
+          {
+            "exercise_code": "C-8.19",
+            "exercise_content": "Show that ∑_{i=1}^h i/2^i is O(1) as an alternative analysis of bottom-up heap construction."
+          },
+          {
+            "exercise_code": "C-8.20",
+            "exercise_content": "Given heap T and query x, report all keys ≤ x in O(k) time where k is the number reported."
+          },
+          {
+            "exercise_code": "C-8.21",
+            "exercise_content": "Describe in-place heap-sort using a standard comparator instead of a reverse one."
+          },
+          {
+            "exercise_code": "C-8.22",
+            "exercise_content": "Describe efficient remove(e) operations for an adaptable priority queue with an unsorted list and location-aware entries."
+          },
+          {
+            "exercise_code": "C-8.23",
+            "exercise_content": "Given S of n points and complete binary tree T indexed by x-order at leaves, build a priority search tree labeling with top(v) in linear time."
+          }
+        ],
+        "projects": [
+          {
+            "exercise_code": "P-8.1",
+            "exercise_content": "Generalize the heap to a k-ary tree for k ≥ 2 and experimentally compare performance across k for bulk random insert/remove."
+          },
+          {
+            "exercise_code": "P-8.2",
+            "exercise_content": "Implement a priority queue using an unsorted list in C++."
+          },
+          {
+            "exercise_code": "P-8.3",
+            "exercise_content": "Implement a heap-based priority queue in C++ that supports locator-based adaptable operations."
+          },
+          {
+            "exercise_code": "P-8.4",
+            "exercise_content": "Implement in-place heap-sort and compare running time with heap-sort using an external heap."
+          },
+          {
+            "exercise_code": "P-8.5",
+            "exercise_content": "Implement a heap-based priority queue with replaceComparator(c) that resets the comparator and restructures the heap in linear time."
+          },
+          {
+            "exercise_code": "P-8.6",
+            "exercise_content": "Write a program to process buy/sell stock orders as in Exercise C-8.1."
+          },
+          {
+            "exercise_code": "P-8.7",
+            "exercise_content": "Build a CPU job scheduler simulator using a priority queue for -20..19 priorities, outputting the job scheduled each time slice."
+          }
+        ]
+      }
+    }
+  ]
+}

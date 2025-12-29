@@ -1,0 +1,188 @@
+{
+  "chapter_code": "Chapter 5",
+  "chapter_title": "Stacks, Queues, and Deques",
+  "knowledge_points": [
+    {
+      "topic": "Stacks",
+      "topic_knowledge_points": [
+        "A stack is a LIFO container where insertion and deletion occur at the top using push, pop, and top with size and empty as accessors.",
+        "The STL stack is a templated adapter (typically over vector) providing push, pop, top, size, and empty but leaves behavior undefined on empty access.",
+        "A stack interface specifies size, empty, top, push, and pop with exceptions on empty access for top and pop.",
+        "An array-based stack maintains an array S and a top index t with all operations running in O(1) time and fixed capacity.",
+        "A linked-list stack uses a singly linked list with the head as the top to provide O(1) push, pop, and top without fixed capacity.",
+        "Stacks can be applied to reverse a sequence by pushing all elements then popping back in reverse order.",
+        "Stacks support linear-time parentheses matching by pushing opening symbols and checking corresponding closing symbols."
+      ]
+    },
+    {
+      "topic": "Queues",
+      "topic_knowledge_points": [
+        "A queue is a FIFO container with enqueue at the rear, dequeue and front at the front, and supports size and empty.",
+        "The STL queue is a templated adapter (typically over vector) providing push, pop, front, back, size, and empty with undefined behavior on empty access.",
+        "An array-based queue uses a circular array with indices f and r and count n to achieve O(1) enqueue and dequeue.",
+        "A linked-list queue can be implemented with a circularly linked list using a cursor where front is cursor->next and rear is cursor, providing O(1) operations."
+      ]
+    },
+    {
+      "topic": "Double-Ended Queues",
+      "topic_knowledge_points": [
+        "A deque supports insertion and removal at both front and back with operations insertFront, insertBack, eraseFront, eraseBack, front, back, size, and empty.",
+        "The STL deque is a templated container supporting push_front, push_back, pop_front, pop_back, front, back, size, and empty with undefined behavior on empty access.",
+        "A deque can be implemented with a doubly linked list with header and trailer sentinels to provide O(1) time for all deque operations.",
+        "An adapter translates one interface to another, allowing stacks and queues to be implemented over a deque by mapping their operations to deque operations."
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "topic_exercise": {
+        "reinforcement": [
+          {
+            "exercise_code": "R-5.1",
+            "exercise_content": "Describe how to implement a capacity-limited stack, which uses the functions of a capacity-limited deque to perform the functions of the stack ADT in ways that do not throw exceptions when we attempt to perform a push on a full stack or a pop on an empty stack."
+          },
+          {
+            "exercise_code": "R-5.2",
+            "exercise_content": "Describe how to implement a capacity-limited queue, which uses the functions of a capacity-limited deque to perform the functions of the queue ADT in ways that do not throw exceptions when we attempt to perform a enqueue on a full queue or a dequeue on an empty queue."
+          },
+          {
+            "exercise_code": "R-5.3",
+            "exercise_content": "Suppose an initially empty stack S has performed a total of 25 push operations, 12 top operations, and 10 pop operations, 3 of which generated a StackEmpty exception that was caught and ignored; what is the current size of S?"
+          },
+          {
+            "exercise_code": "R-5.4",
+            "exercise_content": "If we implemented the stack S from the previous problem with an array as described in this chapter, then what is the current value of the top member variable?"
+          },
+          {
+            "exercise_code": "R-5.5",
+            "exercise_content": "Describe the output of the following series of stack operations: push(5), push(3), pop(), push(2), push(8), pop(), pop(), push(9), push(1), pop(), push(7), push(6), pop(), pop(), push(4), pop(), pop()."
+          },
+          {
+            "exercise_code": "R-5.6",
+            "exercise_content": "Give a recursive function for removing all the elements in a stack."
+          },
+          {
+            "exercise_code": "R-5.7",
+            "exercise_content": "Modify the stack ADT implementation of Section 5.1.5 as a fully generic class (through the use of templates)."
+          },
+          {
+            "exercise_code": "R-5.8",
+            "exercise_content": "Give a precise and complete definition of the concept of matching for grouping symbols in an arithmetic expression."
+          },
+          {
+            "exercise_code": "R-5.9",
+            "exercise_content": "Describe the output for the following sequence of queue operations: enqueue(5), enqueue(3), dequeue(), enqueue(2), enqueue(8), dequeue(), dequeue(), enqueue(9), enqueue(1), dequeue(), enqueue(7), enqueue(6), dequeue(), dequeue(), enqueue(4), dequeue(), dequeue()."
+          },
+          {
+            "exercise_code": "R-5.10",
+            "exercise_content": "Describe the output for the following sequence of deque operations: insertFront(3), insertBack(8), insertBack(9), insertFront(5), removeFront(), eraseBack(), first(), insertBack(7), removeFront(), last(), eraseBack()."
+          },
+          {
+            "exercise_code": "R-5.11",
+            "exercise_content": "Suppose you have a deque D containing the numbers (1,2,3,4,5,6,7,8) in this order and an initially empty queue Q; give a pseudo-code description of a function that uses only D and Q and results in D storing the elements (1,2,3,5,4,6,7,8) in this order."
+          },
+          {
+            "exercise_code": "R-5.12",
+            "exercise_content": "Repeat the previous problem using the deque D and an initially empty stack S."
+          }
+        ],
+        "creativity": [
+          {
+            "exercise_code": "C-5.1",
+            "exercise_content": "Explain how you can implement all the functions of the deque ADT using two stacks."
+          },
+          {
+            "exercise_code": "C-5.2",
+            "exercise_content": "Suppose you have a stack S containing n elements and a queue Q that is initially empty; describe how you can use Q to scan S to see if it contains a certain element x, with the constraint that the elements must be returned to S in their original order and only S, Q, and a constant number of references may be used."
+          },
+          {
+            "exercise_code": "C-5.3",
+            "exercise_content": "Give a pseudo-code description for an array-based implementation of the deque ADT and state the running time for each operation."
+          },
+          {
+            "exercise_code": "C-5.4",
+            "exercise_content": "Suppose Alice has picked three distinct integers and placed them into a stack S in random order; write straight-line pseudo-code using only one comparison and one variable x that guarantees with probability 2/3 that x stores the largest integer, and argue correctness."
+          },
+          {
+            "exercise_code": "C-5.5",
+            "exercise_content": "Describe how to implement the stack ADT using two queues and analyze the running time of push and pop."
+          },
+          {
+            "exercise_code": "C-5.6",
+            "exercise_content": "Show how to use an array-based stack S storing (i,j,k) triples to simulate an uninitialized n×n integer array A so an O(n) algorithm can run without initializing A."
+          },
+          {
+            "exercise_code": "C-5.7",
+            "exercise_content": "Describe a non-recursive algorithm for enumerating all permutations of the numbers {1,2,...,n}."
+          },
+          {
+            "exercise_code": "C-5.8",
+            "exercise_content": "Describe a non-recursive way of evaluating an arithmetic expression in postfix notation."
+          },
+          {
+            "exercise_code": "C-5.9",
+            "exercise_content": "Suppose you have two nonempty stacks S and T and a deque D; describe how to use D so that S contains all elements of T below its original elements, preserving both orders."
+          },
+          {
+            "exercise_code": "C-5.10",
+            "exercise_content": "Given three array-based stacks A (capacity 100, initially full), B (capacity 5), and C (capacity 3) with only transfer(S,T) available, describe a sequence of transfers resulting in B holding 4 elements."
+          },
+          {
+            "exercise_code": "C-5.11",
+            "exercise_content": "Show how to use a stack S and a queue Q to generate all possible subsets of an n-element set T non-recursively."
+          }
+        ],
+        "projects": [
+          {
+            "exercise_code": "P-5.1",
+            "exercise_content": "Give an implementation of the deque ADT using an array so that each update function runs in O(1) time."
+          },
+          {
+            "exercise_code": "P-5.2",
+            "exercise_content": "Design an ADT for a two-color, double-stack with red and blue stacks and implement it efficiently using a single array of capacity N larger than the combined sizes."
+          },
+          {
+            "exercise_code": "P-5.3",
+            "exercise_content": "Implement the stack ADT in a fully generic manner using a singly linked list without using the STL or earlier structures."
+          },
+          {
+            "exercise_code": "P-5.4",
+            "exercise_content": "Implement the stack ADT in a fully generic manner using the STL vector class."
+          },
+          {
+            "exercise_code": "P-5.5",
+            "exercise_content": "Implement the queue ADT in a fully generic manner using a dynamically allocated C++ array."
+          },
+          {
+            "exercise_code": "P-5.6",
+            "exercise_content": "Implement the queue ADT with a singly linked list."
+          },
+          {
+            "exercise_code": "P-5.7",
+            "exercise_content": "Implement the deque ADT with an array used in a circular fashion."
+          },
+          {
+            "exercise_code": "P-5.8",
+            "exercise_content": "Implement the deque ADT with a doubly linked list."
+          },
+          {
+            "exercise_code": "P-5.9",
+            "exercise_content": "Implement a capacity-limited version of the deque ADT based on an array used in a circular fashion."
+          },
+          {
+            "exercise_code": "P-5.10",
+            "exercise_content": "Implement the Stack and Queue interfaces with a unique class derived from class LinkedDeque."
+          },
+          {
+            "exercise_code": "P-5.11",
+            "exercise_content": "Write a program that computes total capital gain or loss from a sequence of stock buy and sell transactions using the FIFO protocol."
+          },
+          {
+            "exercise_code": "P-5.12",
+            "exercise_content": "Implement a program that inputs a postfix expression and outputs its value."
+          }
+        ]
+      }
+    }
+  ]
+}
