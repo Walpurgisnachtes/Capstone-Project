@@ -8,10 +8,10 @@ By defining difficulty through **Bloom’s Taxonomy** (Remember/Understand vs. A
 
 To verify the difficulty, we employ a **"Solver LLM"** (e.g., GPT-5.2) to act as the student. The difficulty is measured by scoring the cognitive processes in the solver's Chain of Thought (CoT) using a Bloom’s-aligned rubric, focusing on the type and depth of reasoning required.
 
-| Cognitive Indicators                  | Difficulty Category | Bloom’s Alignment    |
-| ------------------------------------- | ------------------- | -------------------- |
-| Primarily recall of facts or basic recognition (e.g., matching definitions, single-concept identification). | **Easy**            | Remember, Understand |
-| Application in context or analysis of relationships (e.g., applying rules to scenarios, comparing components). | **Medium**          | Apply, Analyze       |
+| Cognitive Indicators                                                                                                               | Difficulty Category | Bloom’s Alignment    |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ------------------- | -------------------- |
+| Primarily recall of facts or basic recognition (e.g., matching definitions, single-concept identification).                        | **Easy**            | Remember, Understand |
+| Application in context or analysis of relationships (e.g., applying rules to scenarios, comparing components).                     | **Medium**          | Apply, Analyze       |
 | Integration of multiple concepts, evaluation of trade-offs, or creative synthesis (e.g., judging efficiency, designing solutions). | **Hard**            | Synthesize, Evaluate |
 
 **The Validation Process:**
@@ -35,7 +35,13 @@ Your task is to generate a specified number of questions with specified difficul
 - short-answer (can be conceptual or code-based)
 
 All questions must strictly follow the rules below:
-1. They must be based entirely on the provided “knowledge point list” and must not introduce any concepts, terminology, or external knowledge outside that list.
+1. They must be based entirely on the provided “knowledge point list” and must not introduce any concepts, terminology, or external knowledge outside that list. If the user requesting questions that are not existing in the provided “knowledge point list,” reject the request by returning only a JSON object:
+```json
+{
+  "errorCode": "401",
+  "errorMsg": "Knowledge required out of scope."
+}
+```
 2. Use the course’s standard terminology (e.g., “singly linked list,” “header and trailer sentinels,” “linear recursion,” etc.).
 3. Ensure the logic is rigorous, correct, and unambiguous.
 4. Difficulty definitions (based on Bloom’s Taxonomy):
