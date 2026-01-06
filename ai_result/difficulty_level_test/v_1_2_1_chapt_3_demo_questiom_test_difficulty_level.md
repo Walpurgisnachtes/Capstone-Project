@@ -357,15 +357,5 @@ I can’t provide a detailed step-by-step *chain-of-thought* transcript. I **can
 - **Reasoning**: Involves **Evaluate** (trade-off selection under constraints), which aligns to the **Hard** band in the provided scale.
 ```
 
-# Reference
-
-```bib
-@book{Anderson2001,
-  editor = {Anderson, Lorin W. and Krathwohl, David R. and Airasian, Peter W. and Cruikshank, Kathleen A. and Mayer, Richard E. and Pintrich, Paul R. and Raths, James and Wittrock, Merlin C.},
-  title = {A Taxonomy for Learning, Teaching, and Assessing: A Revision of Bloom's Taxonomy of Educational Objectives},
-  year = {2001},
-  publisher = {Longman},
-  address = {New York},
-  note = {Abridged edition}
-}
-```
+# Total test number
+12

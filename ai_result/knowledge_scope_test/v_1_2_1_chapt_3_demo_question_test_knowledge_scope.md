@@ -317,23 +317,5 @@ Generate 3 non-code-based multiple-choice questions, including:  
 ]
 ```
 
-# Reference
-
-```bib
-@book{Biggs2011,
-  author = {Biggs, John B. and Tang, Catherine},
-  title = {Teaching for Quality Learning at University},
-  edition = {4th},
-  year = {2011},
-  publisher = {Open University Press},
-  address = {Maidenhead}
-}
-
-@inproceedings{Mitkov2019,
-  author = {Mitkov, Ruslan and Lee, Min and Ha, Le An},
-  title = {Automatic Question Generation: A Review of Methodologies, Datasets and Evaluation},
-  booktitle = {Proceedings of the 12th International Conference on Natural Language Generation},
-  year = {2019},
-  pages = {1--10}
-}
-```
+# Total test number
+12
